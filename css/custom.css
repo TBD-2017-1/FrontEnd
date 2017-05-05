@@ -21,8 +21,17 @@ body {
  * Top navigation
  * Hide default border to remove 1px line.
  */
+ 
+.navbar-header{
+	padding-right: 100px;
+	}
+	
 .navbar-fixed-top {
-  border: 0;
+	border: 0;
+	padding-left: 200px;
+	padding-right: 200px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 /*
