@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Politweets</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  
+<!-- NAVBAR -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Politweets</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="">Nombre Usuario</a></li>
+            <li><a href="">Cambiar Contraseña</a></li>
+            <li><button type="button" class="btn btn-xs">Cerrar Sesión</button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<div id="wrapper">
+<div class="row">
+	<!-- SIDEBAR -->
+	<div class="col-sm-3 col-md-2 sidebar">
+		<ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Partidos Políticos <span class="sr-only">(current)</span></a></li>
+            <li><a href="">Conglomerados</a></li>
+        	<li><a href="">Políticos</a></li>
+        </ul>
+	</div> <!-- END SIDEBAR -->
+
+	<!-- MAIN -->
+	<div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-2 admin-main">
+    <div class="row"> 
+      <div class="col-sm-3"><h2> Partidos Políticos </h2></div>
+      <div class="col-sm-9" style="padding-top: 20px;"> 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Agregar">Agregar Nuevo</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="AgregarLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Agregar Partido Político</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="InputName">Nombre</label>
+                    <input type="name" class="form-control" id="InputName" placeholder="Nombre">
+                  </div>
+                  <div class="form-group">
+                    <label for="Conglomerado">Conglomerado</label>
+                    <select class="form-control">
+                      <option>conglomerado 01</option>
+                      <option>conglomerado 02</option>
+                      <option>conglomerado 03</option>
+                      <option>conglomerado 04</option>
+                      <option>conglomerado 05</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="TweeterAccount">Cuenta de Tweeter</label>
+                    <input type="taccount" class="form-control" id="TweeterAccount" placeholder="@ejemplo">
+                  </div>                 
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END Modal -->
+      </div>
+    </div>
+    
+		<div class="row"><form>
+			<div class="form-group col-sm-6">
+		    <label for="SelectPartido">Seleccione un partido político:</label>
+		    <select id="SelectPartido" class="form-control">
+			    <option>Partido Socialista</option>
+			    <option>Renovación Nacional</option> 
+			    <option>Partido por la Democracia</option>
+			    <option>Union Demócrata Independiente</option>
+		    </select>
+        <br><button type="submit" class="btn btn-info">Seleccionar</button>
+	    </div>
+	    
+		</form></div>
+
+    <div class="well">
+
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Nombre:</label>
+          <div class="col-sm-10">
+            Partido Político 01
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Conglomerado:</label>
+          <div class="col-sm-10">
+            Conglomerado 01
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Cuenta de Tweeter:</label>
+          <div class="col-sm-10">
+            @cuentatweeter
+          </div>
+        </div>
+      </form>
+
+      <div class="row"><div class="col-sm-3">
+      <table class="table table-condensed">
+        <tr>
+          <th>ID </th>
+          <th>Keyword</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>palabra1 </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>palabra2 </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>palabra3 </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>palabra4 </td>
+        </tr>
+      </table>
+      </div></div>
+
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="exampleInputName2">Agregar: </label>
+          <input type="text" class="form-control input-sm"" id="keyword" placeholder="Keyword">
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">Agregar</button>
+      </form>
+
+    </div>
+
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Editar">Editar</button>
+    <button type="submit" class="btn btn-info">Eliminar</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="Editar">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Editar Partido Político</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="InputName">Nombre</label>
+                <input type="name" class="form-control" id="InputName" placeholder="Nombre">
+              </div>
+              <div class="form-group">
+                <label for="Conglomerado">Conglomerado</label>
+                <select class="form-control">
+                  <option>conglomerado 01</option>
+                  <option>conglomerado 02</option>
+                  <option>conglomerado 03</option>
+                  <option>conglomerado 04</option>
+                  <option>conglomerado 05</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="TweeterAccount">Cuenta de Tweeter</label>
+                <input type="taccount" class="form-control" id="TweeterAccount" placeholder="@ejemplo">
+              </div>
+              
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END Modal -->
+    
+  </div> <!-- END MAIN -->
+
+</div>
+</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
