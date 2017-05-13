@@ -5,20 +5,34 @@ angular.module('angularSpa')
             return $http.get(URL);
         };
 
-  	    this.crearPolitico = function(nombre1,apellido1,cuentaTwitter1,partido1,conglomerado1){         
-           var request = $http({
-                method: "POST",
-                url: "http://localhost:8080/backend/politicos",
-                data: {
-                    apellido: apellido1,
-                    cuentaTwitter: cuentaTwitter1,
-                    nombre: nombre1,
-                    conglomerado: conglomerado1,
-                    partido: partido1
-                    },
-                headers: {'Content-Type': 'application/json'}
-                });
-                return (request);
-            };
-           
+        this.crearPolitico = function(politico){
+            return $http.post(URL, politico)
+            .then(function(){
+                $location.url("/adminPoliticos");
+                window.location.reload();
+            },
+            function(){
+                console.log(error);
+            });
+        };
+            
+        this.editarPolitico = function(politico, id){
+            console.log(id)
+            console.log(politico)
+            return $http.put('http://localhost:8080/backend/politicos/' + id, politico);
+        };
+
+        this.borrarPolitico = function(politico, id){
+            console.log(id)
+            console.log(politico)
+            return $http.delete('http://localhost:8080/backend/politicos/' + id, politico)
+            .then(function(){
+                $location.url("/adminPartidos");
+                window.location.reload();
+            },
+            function(){
+                console.log(error);
+            });
+        };
+
     });

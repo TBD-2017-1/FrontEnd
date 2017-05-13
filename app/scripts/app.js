@@ -23,6 +23,18 @@
           templateUrl:'views/adminPoliticos.html',
           controller:'politicosCtrl'
         })
+    .when('/adminConglomerados', {
+          templateUrl:'views/adminConglomerados.html',
+          controller:'conglomeradosCtrl'
+        })
+    .when('/adminPoliticos', {
+          templateUrl:'views/adminPoliticos.html',
+          controller:'politicosCtrl'
+        })
+    .when('/adminPartidos', {
+          templateUrl:'views/adminPartidos.html',
+          controller:'partidosCtrl'
+        })
     .otherwise({
         redirectTo: '/home'
       });

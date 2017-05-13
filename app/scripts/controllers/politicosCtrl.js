@@ -5,29 +5,26 @@ angular.module('angularSpa')
 		$scope.conglomerados = [];
 		$scope.politicoSeleccionado = {};
 		$scope.newPolitico = {};
+		$scope.setID= {};
 
 		function Politicos(){
-			$scope.crearPolitico = function(){
-				politicosService.crearPolitico(
-					$scope.form.nombre,
-					$scope.form.apellido,
-					$scope.form.cuentaTwitter,
-					$scope.form.partido,
-					$scope.form.conglomerado)
-				console.log($scope.form.partido);  
-	            $scope.form.nombre ="";
-				$scope.form.apellido="";
-				$scope.form.cuentaTwitter="";
-				$scope.form.partido="";
-				$scope.form.conglomerado="";
+
+			$scope.crearPolitico = function(newPolitico){
+				politicosService.crearPolitico(newPolitico);
+				$scope.newPolitico = {};
+			}
+			
+			$scope.setPolitico = function(politico){
+				$scope.politicoSeleccionado = politico;
+				$scope.setID = politico.id;
 			}
 
-			
-			$scope.editPolitico = function(politico){
-				$scope.politicoSeleccionado = politico;
-				console.log("pium");
-				console.log($scope.politicoSeleccionado);
-				console.log(politico);
+			$scope.editarPolitico = function(politico){
+				politicosService.editarPolitico(politico, $scope.setID);
+			}
+
+			$scope.borrarPolitico = function(politico){
+				politicosService.borrarPolitico(politico, $scope.setID);
 			}
 
 			politicosService.getPoliticos().then(function(data){			
