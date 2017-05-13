@@ -1,0 +1,211 @@
+<div id="wrapper" ng-controller="politicosCtrl">
+<div class="row">
+  <!-- SIDEBAR -->
+  <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li><a href="">Partidos Políticos</a></li>
+      <li><a href="">Conglomerados</a></li>
+      <li class="active"><a href="#">Políticos <span class="sr-only">(current)</span></a></li>
+    </ul>
+  </div> <!-- END SIDEBAR -->
+
+  <!-- MAIN -->
+  <div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-2 admin-main">
+    <div class="row"> 
+      <div class="col-sm-3"><h2> Políticos </h2></div>
+      <div class="col-sm-9" style="padding-top: 20px;"> 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Agregar">Agregar Nuevo</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="AgregarLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Agregar Político</h4>
+              </div>
+              <div class="modal-body">
+                <form ng-submit="crearPolitico()">
+                  <div class="form-group">
+                    <label for="InputName">Nombre</label>
+                    <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="form.nombre">
+                  </div>
+                  <div class="form-group">
+                    <label for="InputName">Apellido</label>
+                    <input type="name" class="form-control" id="InputLastName" placeholder="Apellido" ng-model="form.apellido">
+                   </div>
+                  <div class="form-group">
+                    <label for="Partido">Partido Político</label>
+                    <select class="form-control" ng-model="form.partido">
+                      <option ng-repeat="partido in partidos.data" value="{{partido}}">{{partido.nombre}}</option>
+                      
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="Conglomerado">Conglomerado</label>
+                    <select class="form-control" ng-model="form.conglomerado">
+                       <option ng-repeat="conglomerado in conglomerados.data" value="{{conglomerado}}">{{conglomerado.nombre}}</option>
+
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="TweeterAccount">Cuenta de Tweeter</label>
+                    <input type="taccount" class="form-control" id="TweeterAccount" placeholder="@ejemplo" ng-model="form.cuentaTwitter">
+                  </div>                 
+                </form>
+                <pre>{{form | json}}</pre>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" ng-click="crearPolitico()">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END Modal -->
+      </div>
+    </div>
+    
+    <div class="row"><form>
+      <div class="form-group col-sm-6">
+        <label for="SelectPolitico">Seleccione un político:</label>
+        <select id="selectPolitico" class="form-control" ng-model="selectPolitico" ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '-id'">
+          <!--<option ng-repeat="politico in politicos.data" > {{politico.nombre}} {{politico.apellido}}</option> -->
+      </select>
+      </div>
+      
+    </form></div>
+
+    <div class="well">
+
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Nombre:</label>
+          <div class="col-sm-10">
+            {{selectPolitico.nombre}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Apellido:</label>
+          <div class="col-sm-10">
+            {{selectPolitico.apellido}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Partido Político:</label>
+          <div class="col-sm-10">
+            {{selectPolitico.partido.nombre}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Conglomerado:</label>
+          <div class="col-sm-10">
+            {{selectPolitico.partido.conglomerado.nombre}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Name" class="col-sm-2">Cuenta de Tweeter:</label>
+          <div class="col-sm-10">
+            @{{selectPolitico.cuentaTwitter}}
+          </div>
+        </div>
+      </form>
+
+      <div class="row"><div class="col-sm-3">
+      <table class="table table-condensed">
+        <tr>
+          <th>ID </th>
+          <th>Keyword</th>
+          <th> </th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>palabra1 </td>
+          <td><button type="submit" class="btn btn-danger btn-xs">Borrar</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>palabra2 </td>
+          <td><button type="submit" class="btn btn-danger btn-xs">Borrar</button></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>palabra3 </td>
+          <td><button type="submit" class="btn btn-danger btn-xs">Borrar</button></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>palabra4 </td>
+          <td><button type="submit" class="btn btn-danger btn-xs">Borrar</button></td>
+        </tr>
+      </table>
+      </div></div>
+
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="exampleInputName2">Agregar: </label>
+          <input type="text" class="form-control input-sm"" id="keyword" placeholder="Keyword">
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">Agregar</button>
+      </form>
+
+    </div>
+
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Editar" ng-click="editPolitico(selectPolitico)">Editar</button>
+    <button type="submit" class="btn btn-info">Eliminar</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="Editar">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Editar Político</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="InputName">Nombre</label>
+                <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="politicoSeleccionado.nombre">
+              </div>
+              <div class="form-group">
+                <label for="InputName">Apellido</label>
+                <input type="name" class="form-control" id="InputLastName" placeholder="Apellido" ng-model="politicoSeleccionado.apellido">
+              </div>
+              <div class="form-group">
+                <label for="Partido">Partido Político</label>
+                <select class="form-control" ng-model="politicoSeleccionado.idpartido" ng-options="partido in partidos.data">
+                  <!--<option ng-repeat="partido in partidos.data" value="{{partido.id}}" >{{partido.nombre}}</option> -->
+
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="Conglomerado">Conglomerado</label>
+                <select class="form-control">
+                  <option>conglomerado 01</option>
+                  <option>conglomerado 02</option>
+                  <option>conglomerado 03</option>
+                  <option>conglomerado 04</option>
+                  <option>conglomerado 05</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="TweeterAccount">Cuenta de Tweeter</label>
+                <input type="taccount" class="form-control" id="TweeterAccount" placeholder="@ejemplo" ng-model="existingData.cuentaTwitter">
+              </div>
+              
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END Modal -->
+    
+  </div> <!-- END MAIN -->
+
+</div>
+</div>

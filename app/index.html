@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PoliTweets</title>
+
+  <link rel="stylesheet" href="styles/bootstrap-theme.css">
+  <link rel="stylesheet" href="styles/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/custom.css">
+
+</head>
+<body ng-app="angularSpa">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Politweets</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aprobación 
+                <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/aprobacionPartidos">Partidos Políticos</a></li>
+            <li><a href="#/aprobacionConglomerados">Conglomerados</a></li>
+            <li><a href="#/aprobacionPoliticos">Políticos</a></li>
+          </ul>
+        </li>
+            <li><a href="#">Rankings</a></li>
+            <li><a href="#">Mapa Político</a></li>
+          </ul>  
+          <ul class="nav navbar-nav navbar-right">
+            <form class="navbar-form navbar-left" role="login">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Usuario">
+
+              </div>
+              <a href="#/admin" class="btn btn-default">Entrar</a>
+            </form>
+          </ul>     
+        </div>
+      </div>
+    </nav>
+
+  <ng-view></ng-view>
+  <!-- Recursos de bower-->
+  <!-- build:js js/vendor.js --> 
+  <!-- bower:js -->
+  
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDl467JcM55_81J-wp1s9lqylWNKVFBo5E&signed_in=true&sensor=false&extension=.js"></script>
+  <script src="http://rawgit.com/angular-ui/angular-google-maps/2.0.X/dist/angular-google-maps.js"></script>
+  
+
+
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- Recursos personales-->
+  <!-- build:js js/scripts.js -->   
+  <!-- inject:js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/angular-cookies.min.js.js"></script>
+  <script src="scripts/controllers/angular-resource.min.js"></script>
+  <script src="scripts/controllers/apConglomeradosCtrl.js"></script>
+  <script src="scripts/controllers/apPartidosCtrl.js"></script>
+  <script src="scripts/controllers/apPoliticosCtrl.js"></script>
+  <script src="scripts/controllers/conglomeradosCtrl.js"></script>
+  <script src="scripts/controllers/conglomeradosSrv.js"></script>
+  <script src="scripts/controllers/mainCtrl.js"></script>
+  <script src="scripts/controllers/partidosCtrl.js"></script>
+  <script src="scripts/controllers/partidosSrv.js"></script>
+  <script src="scripts/controllers/politicosCtrl.js"></script>
+  <script src="scripts/controllers/politicosSrv.js"></script>
+  <!-- endinject -->
+  <!-- endbuild -->
+</body>
+</html>
