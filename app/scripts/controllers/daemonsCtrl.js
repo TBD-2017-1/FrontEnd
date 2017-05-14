@@ -1,4 +1,4 @@
-angular.module('angularSpa')
+angular.module('poliTweets')
 	.controller('daemonsCtrl', function($scope,daemonsService){
 		$scope.estado = {};
 		$scope.enviar = {};

@@ -1,4 +1,4 @@
-angular.module('angularSpa')
+angular.module('poliTweets')
     .service('partidosService', function($location,$http){
     	var URL= 'http://localhost:8080/backend/partidos';
         this.getPartidos = function(){ 
@@ -34,4 +34,32 @@ angular.module('angularSpa')
             	console.log(error);
             });
         };
+
+/*        this.borrarKeywordPartido = function(keyword, id){
+            console.log(id)
+            console.log(keyword)
+            return $http.delete('http://localhost:8080/backend/partidos/'+id+'/deletekeyword', keyword)
+            .then(function(){
+                $location.url("/adminPartidos");
+                window.location.reload();
+            },
+            function(){
+                console.log(error);
+            });
+        };*/
+
+        this.addKeywordPartido = function(keyword, id){
+            return $http.post('http://localhost:8080/backend/partidos/'+id+'/addkeyword',keyword)
+            .then(function(){
+                console.log(keyword);
+                console.log(id);
+                $location.url("/adminPartidos");
+                window.location.reload();
+            },
+            function(){
+                console.log(error);
+            });
+        };
+
+        
     });

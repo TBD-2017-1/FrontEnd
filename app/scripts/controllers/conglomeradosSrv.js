@@ -1,5 +1,5 @@
-angular.module('angularSpa')
-    .service('conglomeradosService', function($http){
+angular.module('poliTweets')
+    .service('conglomeradosService', function($http,$location){
     	var URL= 'http://localhost:8080/backend/conglomerados';
         this.getConglomerados = function(){ 
             return $http.get(URL);
@@ -31,35 +31,18 @@ angular.module('angularSpa')
                 console.log(error);
             });
         };
-/*
-  	    this.crearconglomerado = function(nombre,apellido,cuentaTwitter,partidoid,conglomeradoid){
-            cong= {"id":7,"nombre":"Independiente"};
 
-            part= {"conglomerado":{"cuentaTwitter":"NuevaMayoriacl","id":2,"nombre":"Nueva MayorÃ­a"},
-                    "cuentaTwitter":"PPD_Chile",
-                    "id":5,
-                    "nombre":"Partido por la Democracia"};
+        this.addKeywordConglomerado = function(keyword, id){
+            return $http.post('http://localhost:8080/backend/conglomerados/'+id+'/addkeyword',keyword)
+            .then(function(){
+                console.log(keyword);
+                console.log(id);
+                $location.url("/adminConglomerados");
+                window.location.reload();
+            },
+            function(){
+                console.log(error);
+            });
+        };
 
-
-            dataPOST = {"apellido":"Perez", 
-                        "conglomerado": cong,                     
-                        "cuentaTwitter":"juanitoperez",
-                        "nombre":"Juan",
-                        "partido": part, 
-            }; 
-
-            console.log(dataPOST);
-            return $http.post(URL, dataPOST);
-
-            dataPOST= { nombre,
-                        apellido,
-                        cuentaTwitter,
-                        partidoid,
-                        conglomeradoid};
-            
-            console.log(dataPOST);
-            return $http.post(URL, dataPOST);
-
-            };
-           */
     });

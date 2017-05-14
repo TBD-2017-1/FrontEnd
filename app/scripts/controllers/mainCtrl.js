@@ -1,3 +1,3 @@
-angular.module('angularSpa')
+angular.module('poliTweets')
 		.controller('mainCtrl', function($scope){
 });

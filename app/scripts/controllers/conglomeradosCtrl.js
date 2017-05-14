@@ -1,4 +1,4 @@
-angular.module('angularSpa')
+angular.module('poliTweets')
 	.controller('conglomeradosCtrl', function($scope, conglomeradosService){
 		$scope.conglomerados = [];
 		$scope.partidos = [];
@@ -6,6 +6,8 @@ angular.module('angularSpa')
 		$scope.conglomeradoSeleccionado = {};
 		$scope.newConglomerado = {};
 		$scope.setID= {};
+		$scope.newKeywordCong = {};
+		$scope.palabra = {};
 
 		function Conglomerados(){
 
@@ -25,6 +27,12 @@ angular.module('angularSpa')
 
 			$scope.borrarConglomerado = function(conglomerado){
 				conglomeradosService.borrarConglomerado(conglomerado, $scope.setID);
+			}
+
+			$scope.agregarKeywordConglomerado = function(newKeywordCong){
+				$scope.palabra = { value: newKeywordCong };
+				conglomeradosService.addKeywordConglomerado($scope.palabra,$scope.selectConglomerado.id);
+				$scope.newKeywordCong = {};
 			}
 
 			conglomeradosService.getConglomerados().then(function(data){			

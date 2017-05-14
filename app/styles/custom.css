@@ -6,9 +6,17 @@ body {
 }
 
 .main{
+  width: 60%;
   padding:10px;
   margin: 0 auto;
   text-align: center;
+}
+s
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
 }
 
 .content{
@@ -66,15 +74,6 @@ body {
 .nav-sidebar > .active > a:focus {
   color: #fff;
   background-color: #428bca;
-}
-
-
-
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
 }
 
 .admin-main{

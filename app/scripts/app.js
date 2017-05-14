@@ -1,6 +1,6 @@
 (function(){
 
-    angular.module('angularSpa', ['ngRoute','ngCookies','ngResource','ngMaterial','ngMessages'])
+    angular.module('poliTweets', ['ngRoute','ngCookies','ngResource','ngMaterial','ngMessages'])
     .config(function($routeProvider){
         $routeProvider
         .when('/home', {

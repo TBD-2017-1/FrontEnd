@@ -1,4 +1,4 @@
-angular.module('angularSpa')
+angular.module('poliTweets')
 	.controller('politicosCtrl', function($scope, politicosService, partidosService, conglomeradosService){
 		$scope.politicos = [];
 		$scope.partidos = [];
@@ -6,6 +6,8 @@ angular.module('angularSpa')
 		$scope.politicoSeleccionado = {};
 		$scope.newPolitico = {};
 		$scope.setID= {};
+		$scope.newKeywordPol = {};
+		$scope.palabra = {};
 
 		function Politicos(){
 
@@ -26,6 +28,16 @@ angular.module('angularSpa')
 			$scope.borrarPolitico = function(politico){
 				politicosService.borrarPolitico(politico, $scope.setID);
 			}
+
+			$scope.agregarKeywordPolitico = function(newKeywordPol){
+				$scope.palabra = { value: newKeywordPol };
+				politicosService.addKeywordPolitico($scope.palabra,$scope.selectPolitico.id);
+				$scope.newKeywordPol = {};
+			}
+
+			/*$scope.borrarKeywordPolitico = function(keyword){
+				partidosService.borrarPolitico(keyword, keyword.id);
+			}*/
 
 			politicosService.getPoliticos().then(function(data){			
 					$scope.politicos = data;

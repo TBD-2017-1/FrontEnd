@@ -1,3 +1,13 @@
+Levantar el frontend en un servidor (forma alternativa)
+================================
+Instalar python
+Ingresar a la carpeta /app
+Ejecutar el comando 
+	$ python -m SimpleHTTPServer 8000
+Revisar	 http://localhost:8000/ donde deberia estar el frontend instalado
+
+
+
 Plantilla Angular
 =================
 
