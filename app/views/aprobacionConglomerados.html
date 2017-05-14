@@ -1,12 +1,172 @@
+<head>
+	  <!-- C3 GRAPHICS core -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+  var text ='[{"date":"09-2016","info":[{"name":"José Ossandón","positive":80,"negative":100,"neutral":12},{"name":"Sebastian Piñera","positive":60,"negative":120,"neutral":10},{"name":"Michelle Bachelete","positive":60,"negative":120,"neutral":7}]},{"date":"10-2016","info":[{"name":"José Ossandón","positive":90,"negative":120,"neutral":22},{"name":"Sebastian Piñera","positive":20,"negative":150,"neutral":15},{"name":"Michelle Bachelete","positive":40,"negative":170,"neutral":17}]},{"date":"11-2016","info":[{"name":"José Ossandón","positive":100,"negative":100,"neutral":2},{"name":"Sebastian Piñera","positive":110,"negative":120,"neutral":3},{"name":"Michelle Bachelete","positive":80,"negative":160,"neutral":10}]}]';
+
+conglo_timeline = JSON.parse(text);
+
+// arreglos de valores para el grafico chart1
+var names= [];                             // elementos eje y del grafico (participantes)
+var aprob= ['Aprobacion'];                 // aprobación actual de cada participante
+var tasa_pos=['Tasa Positiva'];            // tasa de aprecioaciones positivas actuales
+var tasa_neu=['Tasa Neutral'];             // tasa de aprecioaciones neutrales actuales
+var tasa_neg=['Tasa Negativa'];            // tasa de aprecioaciones negativas actuales
+
+// arreglos de valores para el grafico chart2
+var dates=[];               // elementos eje x del grafico (fechas)
+var columns_data=[];        // historial de aprobacion de cada participante
+
+// auxiliares para calcular aprobacion y apreciaciones
+var _posi;                  // cantidad de aprecioaciones positivas por fecha
+var _neut;                  // cantidad de aprecioaciones neutrales por fecha
+var _nega;                  // cantidad de aprecioaciones negativas por fecha
+var total_muestra= [];      // historial de muestras totales por fecha
+
+var i, j, k;                // indices de iteracion
+
+// prepara valores iniciales para las columnas de chart2 (un arreglo por participante)
+for (j in conglo_timeline[0].info) {                // por cada participante en el JSON
+  names.push(conglo_timeline[0].info[j].name);
+
+  var elem_aux= [conglo_timeline[0].info[j].name];
+  columns_data[j]=elem_aux;
+}
+
+// se cargan los elementos del eje x para el grafico chart2
+j= 0;
+for (j in conglo_timeline) {                        // por cada fecha en el JSON
+  dates.push(conglo_timeline[j].date);
+}
+
+// completa la informacion de las columnas de chart 2
+for (i in columns_data) {                         // para cada participante en el JSON
+
+  k = 0;
+  for (k in conglo_timeline) {                      // por cada fecha en el JSON
+    _posi= conglo_timeline[k].info[i].positive;
+    _neut= conglo_timeline[k].info[i].neutral;      // almacenar apreciaciones
+    _nega= conglo_timeline[k].info[i].negative;
+
+    var total_individual= _posi + _neut + _nega;  // total aprec. para este participante en una fecha
+
+    if(total_muestra[k] == null){
+      total_muestra[k]= total_individual;         // guardar total de aprec. en la fecha
+    }
+    else{
+      total_muestra[k]+= total_individual;        // o bien, sumarlo al total de aprec. en la fecha
+    }
+
+    var aux_aprob= (_posi / total_individual) + 0.5*(_neut / total_individual);
+
+    columns_data[i].push(aux_aprob*100);          // establecer aprob de un participante en la fecha
+//console.log(columns_data);    
+
+    if(k == (conglo_timeline.length - 1)){          // si se trata de la ultima fecha registrada
+
+      tasa_neg.push((_nega / total_individual)*aux_aprob*100);
+      tasa_neu.push((_neut / total_individual)*aux_aprob*100);   // guardar ultimos datos de aprec de los participantes
+      tasa_pos.push((_posi / total_individual)*aux_aprob*100);
+      aprob.push(aux_aprob*100);
+
+      console.log(names);
+
+    }
+  }
+}
+</script>
+
 <div id="wrapper">
   <div class="col-mid-12 main">
     <div class="row content">
       <h1>Conglomerados Políticos</h1>
       <h2>Percepción Ciudadana:</h2>
+
+      <div id="chart1"></div>
+        <script type="text/javascript">
+
+          var chart1 = c3.generate({
+            bindto: '#chart1',
+            data: {
+              columns: [
+              aprob
+              ],
+              type: 'bar',
+            },
+            axis: {
+              x: {
+                type: 'category',
+                categories: names,
+                label: { // ADD
+                  text: 'Conglomerados',
+                  position: 'outer-middle'
+                }
+              },
+              y: {
+                label: { // ADD
+                  text: 'Porcentaje',
+                  position: 'outer-middle'
+                }
+              },
+              rotated: true
+            }
+          });
+
+          setTimeout(function () {
+            chart1.load({
+              columns: [
+              tasa_neu,
+              tasa_pos,
+              tasa_neg
+              ]
+            });
+
+            chart1.groups([['Tasa Negativa', 'Tasa Positiva', 'Tasa Neutral' ]]);
+          }, 1500);
+
+        </script>
+
+
       <h2>Aprobación a través del tiempo:</h2>
   
-    
+      <div id="chart2"></div>
+        <script type="text/javascript">
+
+          var chart2 = c3.generate({
+          	bindto: '#chart2',
+            data: {
+              columns: columns_data
+            },
+            axis: {
+              y: {
+                label: { // ADD
+                  text: 'Porcentaje de Aprobación',
+                  position: 'outer-middle'
+                }
+              },
+              x: {
+                type: 'category',
+                categories: dates,
+                label: { // ADD
+                  text: 'Fecha',
+                  position: 'outer-middle'
+                }
+              }
+            }
+          });
+
+        </script>
     
     </div>
   </div>
 </div>
+
+</body>
