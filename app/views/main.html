@@ -7,87 +7,34 @@
 				
 			</div>
 		</div>
-		<div class="row content">
+		<div class="row content" ng-controller="conglomeradosCtrl">
 			<hr>
-			<h2>Políticos:</h2>
-			<table class="table">
+			<h2>Políticos más recientes:</h2>
+			<table class="table" ng-controller="politicosCtrl">
 			  <tr>
 			    <th>Nombre</th>
 			    <th>Partido Político</th>
-			    <th>Cargo</th>
+			    <th>Conglomerado</th>
 			  </tr>
-			  <tr>
-			    <td>Carolina Goic</td>
-			    <td>Senador</td>
-			    <td>Partido Demócrata Cristiano</td>
-			  </tr>
-			  <tr>
-			    <td>Felipe Kast</td>
-			    <td>Diputado</td>
-			    <td>Evolución Política</td>
-			  </tr>
-			  <tr>
-			    <td>José Ossandón</td>
-			    <td>Senador</td>
-			    <td>Independiente</td>
-			  </tr>
-			  <tr>
-			    <td>Sebastian Piñera</td>
-			    <td>Otro</td>
-			    <td>Renovación Nacional</td>
-			  </tr>
-			  <tr>
-			    <td>Michelle Bachelete</td>
-			    <td>Presidente de la Republica</td>
-			    <td>Partido Socialista de Chile</td>
-			  </tr>
-			  <tr>
-			    <td>Ricardo Lagos</td>
-			    <td>Senador</td>
-			    <td>Partido Por la Democracia</td>
-			  </tr>
-			  <tr>
-			    <td>Beatriz Sánchez</td>
-			    <td>Otro</td>
-			    <td>Revolución Democrática</td>
-			  </tr>
-			  <tr>
-			    <td>Joaquín Lavin</td>
-			    <td>Alcalde</td>
-			    <td>Unión Demócrata Independiente</td>
+			  <tr ng-repeat="politico in politicos.data | orderBy: '-id' | limitTo: 10">
+			    <td>{{politico.nombre}} {{politico.apellido}}</td>
+			    <td>{{politico.partido.nombre}}</td>
+			    <td>{{politico.partido.conglomerado.nombre}}</td>
 			  </tr>
 			</table>
 
-			<hr>
-			<h2>Partidos Políticos:</h2>
-			<table class="table">
+			<h2>Partidos Políticos más recientes:</h2>
+			<table class="table" ng-controller="partidosCtrl">
 			  <tr>
 			    <th>Nombre</th>
 			    <th>Conglomerado</th>			  
 			  </tr>
-			  <tr>
-			    <td>Partido Por La Democracia</td>
-			    <td>Nueva Mayoría</td>
-			  </tr>
-			  <tr>
-			    <td>Unión Democrata Independiente</td>
-			    <td>Chile Vamos</td>
-			  </tr>
-			  <tr>
-			    <td>Partido Comunista</td>
-			    <td>Nueva Mayoría</td>
-			  </tr>
-			  <tr>
-			    <td>Partido Radical Socialdemócrata</td>
-			    <td>Nueva Mayoría</td>
-			  </tr>
-			  <tr>
-			    <td>Renovación Nacional</td>
-			    <td>Chile Vamos</td>
-			  </tr>
-			  <tr>
+			  <tr ng-repeat="partido in partidos.data | orderBy: '-id' | limitTo: 10">
+			    <td>{{partido.nombre}}</td>
+			    <td>{{partido.conglomerado.nombre}}</td>
 			  </tr>
 			</table>
+
 		</div>
 	</div>
 </div>

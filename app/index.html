@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>PoliTweets</title>
-
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
   <link rel="stylesheet" href="styles/bootstrap-theme.css">
   <link rel="stylesheet" href="styles/bootstrap-theme.min.css">
   <link rel="stylesheet" href="styles/bootstrap.css">
@@ -16,13 +17,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Politweets</a>
+          <a class="navbar-brand" href="#/home">Politweets</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left">
@@ -37,16 +32,15 @@
         </li>
             <li><a href="#">Rankings</a></li>
             <li><a href="#">Mapa Político</a></li>
+            <li ng-controller="daemonsCtrl" style="color: #fff;">
+                <md-switch ng-model="estado" aria-label="Switch 6" ng-change="onChange(estado)">
+                  Daemons: {{ message }}
+                </md-switch>
+            </li>
           </ul>  
           <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form navbar-left" role="login">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Usuario">
-
-              </div>
-              <a href="#/admin" class="btn btn-default">Entrar</a>
-            </form>
-          </ul>     
+              <a href="#/admin" class="btn btn-info">Entrar</a>
+            </ul>     
         </div>
       </div>
     </nav>
@@ -61,7 +55,11 @@
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
   <!-- Recursos personales-->
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/angular-cookies.min.js.js"></script>
@@ -76,6 +74,8 @@
   <script src="scripts/controllers/partidosSrv.js"></script>
   <script src="scripts/controllers/politicosCtrl.js"></script>
   <script src="scripts/controllers/politicosSrv.js"></script>
+  <script src="scripts/controllers/daemonsCtrl.js"></script>
+  <script src="scripts/controllers/daemonsSrv.js"></script>
 
 </body>
 </html>
