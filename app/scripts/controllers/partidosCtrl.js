@@ -7,6 +7,7 @@ angular.module('poliTweets')
 		$scope.setID= {};
 		$scope.newKeywordPart = {};
 		$scope.palabra = {};
+		$scope.partidoKeywords = [];
 
 		function Partidos(){
 
@@ -18,6 +19,12 @@ angular.module('poliTweets')
 			$scope.setPartido = function(partido){
 				$scope.partidoSeleccionado = partido;
 				$scope.setID = partido.id;
+
+				partidosService.getPartidoKeywords($scope.setID).then(function(data){
+                    $scope.partidoKeywords = data;
+                },function(error){
+                    console.log(error, "noooo error");
+                });
 			}
 
 			$scope.editarPartido = function(partido){
@@ -29,14 +36,14 @@ angular.module('poliTweets')
 			}
 
 			$scope.agregarKeywordPartido = function(newKeywordPart){
-				$scope.palabra = { value: newKeywordPart };
-				partidosService.addKeywordPartido($scope.palabra,$scope.selectPartido.id);
-				$scope.newKeywordPart = {};
-			}
+            	$scope.palabra = { value: newKeywordPart };
+                partidosService.addKeywordPartido($scope.palabra,$scope.selectPartido.id);
+                $scope.newKeywordPart = {};
+            }
 
-			/*$scope.borrarKeywordPartido = function(keyword){
-				partidosService.borrarPartido(keyword, keyword.id);
-			}*/
+            $scope.borrarKeywordPartido = function(keywordid){
+                partidosService.removeKeywordPartido(keywordid,$scope.selectPartido.id);
+            }
 
 
 			partidosService.getPartidos().then(function(data){

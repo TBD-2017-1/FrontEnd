@@ -35,29 +35,31 @@ angular.module('poliTweets')
             });
         };
 
-/*        this.borrarKeywordPartido = function(keyword, id){
-            console.log(id)
-            console.log(keyword)
-            return $http.delete('http://localhost:8080/backend/partidos/'+id+'/deletekeyword', keyword)
-            .then(function(){
-                $location.url("/adminPartidos");
-                window.location.reload();
-            },
-            function(){
-                console.log(error);
-            });
-        };*/
+        this.getPartidoKeywords = function(id){ 
+            return $http.get('http://localhost:8080/backend/partidos/'+id+'/keywords');
+        };
 
         this.addKeywordPartido = function(keyword, id){
             return $http.post('http://localhost:8080/backend/partidos/'+id+'/addkeyword',keyword)
             .then(function(){
-                console.log(keyword);
-                console.log(id);
+                $location.url("/adminPartidos");
+                window.location.reload();
+            },
+            function(error){
+                console.log(error);
+            });
+        };
+
+        this.removeKeywordPartido = function(keywordid, id){
+            console.log("id partido:" + id)
+            console.log("id keyword:" + keywordid)
+            return $http.delete('http://localhost:8080/backend/partidos/'+id+'/removekeyword/'+keywordid)
+            .then(function(){
                 $location.url("/adminPartidos");
                 window.location.reload();
             },
             function(){
-                console.log(error);
+                console.log("error al borrar");
             });
         };
 

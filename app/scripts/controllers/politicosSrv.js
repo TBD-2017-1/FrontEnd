@@ -1,5 +1,5 @@
 angular.module('poliTweets')
-    .service('politicosService', function($http){
+    .service('politicosService', function($location,$http){
     	var URL= 'http://localhost:8080/backend/politicos';
         this.getPoliticos = function(){ 
             return $http.get(URL);
@@ -35,30 +35,32 @@ angular.module('poliTweets')
             });
         };
 
+        this.getPoliticoKeywords = function(id){ 
+            return $http.get('http://localhost:8080/backend/politicos/'+id+'/keywords');
+        };
+
         this.addKeywordPolitico = function(keyword, id){
             return $http.post('http://localhost:8080/backend/politicos/'+id+'/addkeyword',keyword)
             .then(function(){
-                console.log(keyword);
-                console.log(id);
                 $location.url("/adminPoliticos");
                 window.location.reload();
             },
-            function(){
+            function(error){
                 console.log(error);
             });
         };
 
-/*      this.borrarKeywordPolitico = function(keyword, id){
-            console.log(id)
-            console.log(keyword)
-            return $http.delete('http://localhost:8080/backend/partidos/'+id+'/deletekeyword', keyword)
+        this.removeKeywordPolitico = function(keywordid, id){
+            console.log("id politico:" + id)
+            console.log("id keyword:" + keywordid)
+            return $http.delete('http://localhost:8080/backend/politicos/'+id+'/removekeyword/'+keywordid)
             .then(function(){
-                $location.url("/adminPartidos");
+                $location.url("/adminPoliticos");
                 window.location.reload();
             },
             function(){
-                console.log(error);
+                console.log("error al borrar");
             });
-        };*/
+        };
 
     });

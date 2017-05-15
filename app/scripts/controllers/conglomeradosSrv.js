@@ -32,16 +32,31 @@ angular.module('poliTweets')
             });
         };
 
+        this.getConglomeradoKeywords = function(id){ 
+            return $http.get('http://localhost:8080/backend/conglomerados/'+id+'/keywords');
+        };
+
         this.addKeywordConglomerado = function(keyword, id){
             return $http.post('http://localhost:8080/backend/conglomerados/'+id+'/addkeyword',keyword)
             .then(function(){
-                console.log(keyword);
-                console.log(id);
+                $location.url("/adminConglomerados");
+                window.location.reload();
+            },
+            function(error){
+                console.log(error);
+            });
+        };
+
+        this.removeKeywordConglomerado = function(keywordid, id){
+            console.log("id conglomerado:" + id)
+            console.log("id keyword:" + keywordid)
+            return $http.delete('http://localhost:8080/backend/conglomerados/'+id+'/removekeyword/'+keywordid)
+            .then(function(){
                 $location.url("/adminConglomerados");
                 window.location.reload();
             },
             function(){
-                console.log(error);
+                console.log("error al borrar");
             });
         };
 

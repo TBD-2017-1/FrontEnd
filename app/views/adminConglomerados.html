@@ -51,7 +51,7 @@
     <div class="row"><form>
       <div class="form-group col-sm-6">
         <label for="SelectConglomerado">Seleccione un conglomerado:</label>
-        <select id="selectConglomerado" class="form-control" ng-model="selectConglomerado" ng-options="y.nombre for y in conglomerados.data | orderBy: '-id'">
+        <select id="selectConglomerado" class="form-control" ng-model="selectConglomerado" ng-options="y.nombre for y in conglomerados.data | orderBy: '-id'" ng-click="setConglomerado(selectConglomerado)">
       </select>
       </div>
       
@@ -81,10 +81,10 @@
             <th>Keyword</th>
             <th> </th>
           </tr>
-          <tr ng-repeat="palabra in selectConglomerado.keywords">
+          <tr ng-repeat="palabra in conglomeradoKeywords.data">
             <td>{{palabra.id}}</td>
             <td>{{palabra.value}} </td>
-            <td><button type="submit" class="btn btn-danger btn-xs" ng-click="borrarKeywordConglomerado(palabra)">Borrar</button></td>
+            <td><button type="submit" class="btn btn-danger btn-xs" ng-click="borrarKeywordConglomerado(palabra.id)">Borrar</button></td>
           </tr>
         </table>
       </div></div>

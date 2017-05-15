@@ -65,7 +65,7 @@
     <div class="row"><form>
       <div class="form-group col-sm-6">
         <label for="SelectPolitico">Seleccione un político:</label>
-        <select id="selectPolitico" class="form-control" ng-model="selectPolitico" ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '-id'">
+        <select id="selectPolitico" class="form-control" ng-model="selectPolitico" ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '-id'" ng-click="setPolitico(selectPolitico)">
       </select>
       </div>
       
@@ -113,10 +113,10 @@
             <th>Keyword</th>
             <th> </th>
           </tr>
-          <tr ng-repeat="palabra in selectPolitico.keywords">
+          <tr ng-repeat="palabra in politicoKeywords.data">
             <td>{{palabra.id}}</td>
             <td>{{palabra.value}} </td>
-            <td><button type="submit" class="btn btn-danger btn-xs" ng-click="borrarKeywordPolitico(palabra)">Borrar</button></td>
+            <td><button type="submit" class="btn btn-danger btn-xs" ng-click="borrarKeywordPolitico(palabra.id)">Borrar</button></td>
           </tr>
         </table>
       </div></div>

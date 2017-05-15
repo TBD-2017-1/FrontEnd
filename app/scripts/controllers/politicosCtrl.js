@@ -5,9 +5,10 @@ angular.module('poliTweets')
 		$scope.conglomerados = [];
 		$scope.politicoSeleccionado = {};
 		$scope.newPolitico = {};
-		$scope.setID= {};
+		$scope.setID = {};
 		$scope.newKeywordPol = {};
 		$scope.palabra = {};
+		$scope.politicoKeywords = [];
 
 		function Politicos(){
 
@@ -19,6 +20,13 @@ angular.module('poliTweets')
 			$scope.setPolitico = function(politico){
 				$scope.politicoSeleccionado = politico;
 				$scope.setID = politico.id;
+
+				politicosService.getPoliticoKeywords($scope.setID).then(function(data){
+					$scope.politicoKeywords = data;
+				},function(error){
+					console.log(error, "noooo error");
+				});
+
 			}
 
 			$scope.editarPolitico = function(politico){
@@ -35,21 +43,22 @@ angular.module('poliTweets')
 				$scope.newKeywordPol = {};
 			}
 
-			/*$scope.borrarKeywordPolitico = function(keyword){
-				partidosService.borrarPolitico(keyword, keyword.id);
-			}*/
+			$scope.borrarKeywordPolitico = function(keywordid){
+				politicosService.removeKeywordPolitico(keywordid,$scope.selectPolitico.id);
+			}
 
 			politicosService.getPoliticos().then(function(data){			
-					$scope.politicos = data;
-					//console.log($scope.politicos);
+				$scope.politicos = data;
 			}, function(error){
 					console.log(error, "noooo error");		
 			});
+
 			partidosService.getPartidos().then(function(data){
 				$scope.partidos= data;
 			}, function(error){
 					console.log(error, "noooo error");	
 			});
+
 			conglomeradosService.getConglomerados().then(function(data){
 				$scope.conglomerados= data;
 			}, function(error){
