@@ -35,6 +35,10 @@
           templateUrl:'views/adminPartidos.html',
           controller:'partidosCtrl'
         })
+    .when('/test', {
+          templateUrl:'views/test.html',
+          controller:'partidosCtrl'
+        })
     .otherwise({
         redirectTo: '/home'
       });
