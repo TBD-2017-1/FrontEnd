@@ -19,7 +19,14 @@ angular.module('poliTweets')
         this.editarPolitico = function(politico, id){
             console.log(id)
             console.log(politico)
-            return $http.put('http://localhost:8080/backend/politicos/' + id, politico);
+            return $http.put('http://localhost:8080/backend/politicos/' + id, politico)
+            .then(function(){
+                $location.url("/adminPoliticos");
+                window.location.reload();
+            },
+            function(){
+                console.log(error);
+            });
         };
 
         this.borrarPolitico = function(politico, id){
@@ -27,7 +34,7 @@ angular.module('poliTweets')
             console.log(politico)
             return $http.delete('http://localhost:8080/backend/politicos/' + id, politico)
             .then(function(){
-                $location.url("/adminPartidos");
+                $location.url("/adminPoliticos");
                 window.location.reload();
             },
             function(){

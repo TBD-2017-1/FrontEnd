@@ -6,6 +6,7 @@
       <li><a href="#/adminPartidos">Partidos Políticos</a></li>
       <li><a href="#/adminConglomerados">Conglomerados</a></li>
       <li class="active"><a href="#/adminPoliticos">Políticos <span class="sr-only">(current)</span></a></li>
+      <li><a href="#/daemons">Daemons</a></li>
     </ul>
   </div> <!-- END SIDEBAR -->
 
@@ -95,7 +96,7 @@
         <div class="form-group">
           <label for="Name" class="col-sm-2">Conglomerado:</label>
           <div class="col-sm-10">
-            {{selectPolitico.partido.conglomerado.nombre}}
+            {{selectPolitico.conglomerado.nombre}}
           </div>
         </div>
         <div class="form-group">
@@ -176,15 +177,13 @@
               </div>
               <div class="form-group">
                 <label for="Partido">Partido Político</label>
-                <select class="form-control" ng-model="politicoSeleccionado.idpartido" ng-options="partido.nombre for partido in partidos.data">
+                <select class="form-control" ng-model="politicoSeleccionado.partido" ng-options="partido.nombre for partido in partidos.data">
                   <option value="" disabled> {{selectPolitico.partido.nombre}} </option>
-                  <!--<option ng-repeat="partido in partidos.data" value="{{partido.id}}" >{{partido.nombre}}</option> -->
-
                 </select>
               </div>
               <div class="form-group">
                 <label for="Conglomerado">Conglomerado</label>
-                <select class="form-control" ng-model="politicoSeleccionado.idconglomerado" ng-options="conglomerado.nombre for conglomerado in conglomerados.data">
+                <select class="form-control" ng-model="politicoSeleccionado.conglomerado" ng-options="conglomerado.nombre for conglomerado in conglomerados.data">
                 <option value="" disabled> {{selectPolitico.conglomerado.nombre}} </option>
                 </select>
               </div>

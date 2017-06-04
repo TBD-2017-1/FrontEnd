@@ -35,6 +35,26 @@
           templateUrl:'views/adminPartidos.html',
           controller:'partidosCtrl'
         })
+    .when('/daemons', {
+          templateUrl:'views/daemons.html',
+          controller:'daemonsCtrl'
+        })
+    .when('/rankingPartidos', {
+          templateUrl:'views/rankingPartidos.html',
+          controller:'partidosCtrl'
+        })
+    .when('/rankingConglomerados', {
+          templateUrl:'views/rankingConglomerados.html',
+          controller:'conglomeradosCtrl'
+        })
+    .when('/rankingPoliticos', {
+          templateUrl:'views/rankingPoliticos.html',
+          controller:'politicosCtrl'
+        })
+    .when('/influencias', {
+          templateUrl:'views/influencias.html',
+          controller:'politicosCtrl'
+        })
     .otherwise({
         redirectTo: '/home'
       });

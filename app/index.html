@@ -32,21 +32,28 @@
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aprobación 
                 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#/aprobacionPartidos">Partidos Políticos</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#/aprobacionConglomerados">Conglomerados</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#/aprobacionPoliticos">Políticos</a></li>
-          </ul>
-        </li>
-            <li><a href="#">Rankings</a></li>
-            <li><a href="#">Mapa Político</a></li>
-            <li ng-controller="daemonsCtrl" style="color: #fff;">
-                <md-switch ng-model="estado" aria-label="Switch 6" ng-change="onChange(estado)">
-                  Daemons: {{ message }}
-                </md-switch>
+              <ul class="dropdown-menu">
+                <li><a href="#/aprobacionPartidos">Partidos Políticos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#/aprobacionConglomerados">Conglomerados</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#/aprobacionPoliticos">Políticos</a></li>
+              </ul>
             </li>
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rankings 
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/rankingPartidos">Partidos Políticos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#/rankingConglomerados">Conglomerados</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#/rankingPoliticos">Políticos</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#/influencias">Influencias</a></li>
+            <li><a href="#">Mapa Político</a></li>
           </ul>  
           <ul class="nav navbar-nav navbar-right">
              <li> <a href="#/admin" class="btn btn-default">Entrar</a></li>

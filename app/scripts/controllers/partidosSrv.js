@@ -19,7 +19,14 @@ angular.module('poliTweets')
         this.editarPartido = function(partido, id){
             console.log(id)
             console.log(partido)
-            return $http.put('http://localhost:8080/backend/partidos/' + id, partido);
+            return $http.put('http://localhost:8080/backend/partidos/' + id, partido)
+            .then(function(){
+                $location.url("/adminPartidos");
+                window.location.reload();
+            },
+            function(){
+                console.log(error);
+            });
         };
 
         this.borrarPartido = function(partido, id){
