@@ -20,6 +20,14 @@
         controller: 'apPoliticosCtrl'
       })
     .when('/admin', {
+          resolve: {
+            "check": function($location,$cookies){
+              if (!$cookies.get('sesion')){
+                console.log($cookies.get('sesion'));
+                $location.path('/');
+              }
+            }
+          },
           templateUrl:'views/adminPoliticos.html',
           controller:'politicosCtrl'
         })

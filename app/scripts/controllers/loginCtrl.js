@@ -1,5 +1,5 @@
 angular.module('poliTweets')
-	.controller('loginCtrl', function($location, $scope, loginService){
+	.controller('loginCtrl', function($location, $scope, loginService,$cookies){
 
 		$scope.submit = function(){
 
