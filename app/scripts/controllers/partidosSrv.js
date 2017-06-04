@@ -19,14 +19,7 @@ angular.module('poliTweets')
         this.editarPartido = function(partido, id){
             console.log(id)
             console.log(partido)
-            return $http.put('http://localhost:8080/backend/partidos/' + id, partido)
-            .then(function(){
-                $location.url("/adminPartidos");
-                window.location.reload();
-            },
-            function(){
-                console.log(error);
-            });
+            return $http.put('http://localhost:8080/backend/partidos/' + id, partido);
         };
 
         this.borrarPartido = function(partido, id){
@@ -70,5 +63,24 @@ angular.module('poliTweets')
             });
         };
 
-        
+        this.getPartiApr = function(){ 
+            var URL2= 'http://localhost:8080/backend/metricas/aprobacion/partidos';
+            return $http.get(URL2);
+        };
+
+        this.getCongloPos = function(){ 
+            var URL2= 'http://localhost:8080/backend/metricas/sentimientoPositivo/partidos';
+            return $http.get(URL2);
+        };
+
+        this.getCongloNeg = function(){ 
+            var URL2= 'http://localhost:8080/backend/metricas/sentimientoNegativo/partidos';
+            return $http.get(URL2);
+        };
+
+        this.getCongloNeu = function(){ 
+            var URL2= 'http://localhost:8080/backend/metricas/sentimientoNeutro/partidos';
+            return $http.get(URL2);
+        };
+
     });

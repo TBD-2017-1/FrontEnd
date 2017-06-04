@@ -19,14 +19,7 @@ angular.module('poliTweets')
         this.editarPolitico = function(politico, id){
             console.log(id)
             console.log(politico)
-            return $http.put('http://localhost:8080/backend/politicos/' + id, politico)
-            .then(function(){
-                $location.url("/adminPoliticos");
-                window.location.reload();
-            },
-            function(){
-                console.log(error);
-            });
+            return $http.put('http://localhost:8080/backend/politicos/' + id, politico);
         };
 
         this.borrarPolitico = function(politico, id){
@@ -34,7 +27,7 @@ angular.module('poliTweets')
             console.log(politico)
             return $http.delete('http://localhost:8080/backend/politicos/' + id, politico)
             .then(function(){
-                $location.url("/adminPoliticos");
+                $location.url("/adminPartidos");
                 window.location.reload();
             },
             function(){
@@ -69,5 +62,26 @@ angular.module('poliTweets')
                 console.log("error al borrar");
             });
         };
+
+        this.getPoliApr = function(){ 
+            var URL1= 'http://localhost:8080/backend/metricas/aprobacion/politicos';
+            return $http.get(URL1);
+        };
+
+        this.getPoliPos = function(){ 
+            var URL1= 'http://localhost:8080/backend/metricas/sentimientoPositivo/politicos';
+            return $http.get(URL1);
+        };
+
+        this.getPoliNeg = function(){ 
+            var URL1= 'http://localhost:8080/backend/metricas/sentimientoNegativo/politicos';
+            return $http.get(URL1);
+        };
+
+        this.getPoliNeu = function(){ 
+            var URL1= 'http://localhost:8080/backend/metricas/sentimientoNeutro/politicos';
+            return $http.get(URL1);
+        };
+
 
     });

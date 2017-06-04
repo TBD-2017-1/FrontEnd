@@ -60,4 +60,24 @@ angular.module('poliTweets')
             });
         };
 
+        this.getCongloApr = function(){ 
+            var URL3= 'http://localhost:8080/backend/metricas/aprobacion/conglomerados';
+            return $http.get(URL3);
+        };
+
+        this.getCongloPos = function(){ 
+            var URL3= 'http://localhost:8080/backend/metricas/sentimientoPositivo/conglomerados';
+            return $http.get(URL3);
+        };
+
+        this.getCongloNeg = function(){ 
+            var URL3= 'http://localhost:8080/backend/metricas/sentimientoNegativo/conglomerados';
+            return $http.get(URL3);
+        };
+
+        this.getCongloNeu = function(){ 
+            var URL3= 'http://localhost:8080/backend/metricas/sentimientoNeutro/conglomerados';
+            return $http.get(URL3);
+        };
+
     });
