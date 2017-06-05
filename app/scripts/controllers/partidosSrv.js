@@ -67,17 +67,17 @@ angular.module('poliTweets')
             return $http.get(URL2);
         };
 
-        this.getCongloPos = function(){ 
+        this.getPartiPos = function(){ 
             var URL2= 'http://localhost:8080/backend/metricas/sentimientoPositivo/partidos';
             return $http.get(URL2);
         };
 
-        this.getCongloNeg = function(){ 
+        this.getPartiNeg = function(){ 
             var URL2= 'http://localhost:8080/backend/metricas/sentimientoNegativo/partidos';
             return $http.get(URL2);
         };
 
-        this.getCongloNeu = function(){ 
+        this.getPartiNeu = function(){ 
             var URL2= 'http://localhost:8080/backend/metricas/sentimientoNeutro/partidos';
             return $http.get(URL2);
         };
