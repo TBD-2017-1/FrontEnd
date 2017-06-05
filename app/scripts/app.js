@@ -20,22 +20,61 @@
         controller: 'apPoliticosCtrl'
       })
     .when('/admin', {
+          resolve: {
+            "check": function($location,$cookies){
+              if (!$cookies.get('sesion')){
+                $location.path('/');
+              }
+            }
+          },
           templateUrl:'views/adminPoliticos.html',
           controller:'politicosCtrl'
         })
     .when('/adminConglomerados', {
+          resolve: {
+            "check": function($location,$cookies){
+              if (!$cookies.get('sesion')){
+                console.log($cookies.get('sesion'));
+                $location.path('/');
+              }
+            }
+          },
           templateUrl:'views/adminConglomerados.html',
           controller:'conglomeradosCtrl'
         })
     .when('/adminPoliticos', {
+          resolve: {
+            "check": function($location,$cookies){
+              if (!$cookies.get('sesion')){
+                console.log($cookies.get('sesion'));
+                $location.path('/');
+              }
+            }
+          },
           templateUrl:'views/adminPoliticos.html',
           controller:'politicosCtrl'
         })
     .when('/adminPartidos', {
+          resolve: {
+            "check": function($location,$cookies){
+              if (!$cookies.get('sesion')){
+                console.log($cookies.get('sesion'));
+                $location.path('/');
+              }
+            }
+          },
           templateUrl:'views/adminPartidos.html',
           controller:'partidosCtrl'
         })
     .when('/daemons', {
+          resolve: {
+            "check": function($location,$cookies){
+              if (!$cookies.get('sesion')){
+                console.log($cookies.get('sesion'));
+                $location.path('/');
+              }
+            }
+          },
           templateUrl:'views/daemons.html',
           controller:'daemonsCtrl'
         })
