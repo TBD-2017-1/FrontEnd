@@ -1,6 +1,10 @@
 angular.module('poliTweets')
 	.controller('apPoliticosCtrl', function($scope, $timeout, politicosService){
-
+	// COMBOBOX
+		$scope.politicos = [];
+		$scope.politicoSeleccionado = {};
+		$scope.setID = {};
+	
 	// PARA GRAFICO USANDO SERVICIO
 		$scope.timeline_data = [];
 
@@ -18,56 +22,68 @@ angular.module('poliTweets')
 		$scope.dates=[];               // elementos eje x del grafico (fechas)
 		$scope.columns_data=[];        // historial de aprobacion de cada participante
 
-		function cargarTimeline(){
-			politicosService.getPoliApr().then(function(data){
-				var time_data = data.data;
-				$scope.timeline_data = time_data;
-				$scope.iniciarTimeline();
+		function Politicos(){
+			$scope.setPolitico = function(politico){
+				$scope.politicoSeleccionado = politico;
+				$scope.setID = politico.id;
+				//console.log($scope.setID);
 
-				politicosService.getPoliApr().then(function(data){
+				politicosService.getPoliApr($scope.setID).then(function(data){
 					var time_data = data.data;
 					$scope.timeline_data = time_data;
-					$scope.procesarApro();
+					$scope.iniciarTimeline();
 
-					politicosService.getPoliPos().then(function(data){
-						time_data = data.data;
+					politicosService.getPoliApr($scope.setID).then(function(data){
+						var time_data = data.data;
 						$scope.timeline_data = time_data;
-						$scope.procesarPosi();
+						$scope.procesarApro();
 
-						politicosService.getPoliNeg().then(function(data){
+						politicosService.getPoliPos($scope.setID).then(function(data){
 							time_data = data.data;
 							$scope.timeline_data = time_data;
-								$scope.procesarNega();
+							$scope.procesarPosi();
 
-							politicosService.getPoliNeu().then(function(data){
+							politicosService.getPoliNeg($scope.setID).then(function(data){
 								time_data = data.data;
 								$scope.timeline_data = time_data;
-								$scope.procesarNeut();
+								$scope.procesarNega();
 
-								$scope.showGraphA();
-								$scope.showGraphB();
+								politicosService.getPoliNeu($scope.setID).then(function(data){
+									time_data = data.data;
+									$scope.timeline_data = time_data;
+									$scope.procesarNeut();
+
+									$scope.showGraphA();
+									$scope.showGraphB();
+
+								}, function(error){
+									console.log(error, "error4");
+								});
 
 							}, function(error){
-								console.log(error, "error4");
+								console.log(error, "error3");
 							});
 
 						}, function(error){
-							console.log(error, "error3");
+							console.log(error, "error2");
 						});
 
 					}, function(error){
-						console.log(error, "error2");
+						console.log(error, "error1");
 					});
 
 				}, function(error){
 					console.log(error, "error1");
 				});
+			}
 
+			politicosService.getPoliticos().then(function(data){			
+				$scope.politicos = data;
 			}, function(error){
-				console.log(error, "error1");
 			});
+
 		}
-		cargarTimeline();
+		Politicos();
 
 
 		$scope.iniciarTimeline = function(){
