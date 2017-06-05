@@ -71,7 +71,7 @@
 <script type="application/javascript">
   sigma.neo4j.cypher(
     {url: 'http://107.170.99.162:7474', user: 'neo4j', password: 'DigitalOceanServer'},
-    "match (a:Conglomerado) with a limit 10 match (b)-[r]->(a) return a, b, r",
+    "match p=(b)-[r:Tweet]->(a) where size((b)-[:Tweet]->()) > 1 return p",
     {container: 'graph-container'}
     function(s){
       s.settings({
