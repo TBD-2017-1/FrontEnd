@@ -23,7 +23,6 @@ angular.module('poliTweets')
 				conglomeradosService.getConglomeradoKeywords($scope.setID).then(function(data){
                     $scope.conglomeradoKeywords = data;
                 },function(error){
-                    console.log(error, "noooo error");
                 });
 			}
 
@@ -48,7 +47,6 @@ angular.module('poliTweets')
 			conglomeradosService.getConglomerados().then(function(data){			
 				$scope.conglomerados = data;
 			}, function(error){
-					console.log(error, "noooo error");		
 			});
 
 		}

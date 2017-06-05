@@ -53,7 +53,6 @@ angular.module('poliTweets')
                 window.location.reload();
             },
             function(error){
-                console.log(error);
             });
         };
 
