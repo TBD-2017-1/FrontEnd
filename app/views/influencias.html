@@ -74,7 +74,15 @@
           defaultEdgeColor: '#457360',
         });
       s.graph.nodes().forEach(function(node){
-        node.color = node.neo4j_labels[0] == "Usuario"?'#009000':'#CA3030';
+        if(node.neo4j_labels[0] == "Usuario"){
+          node.color = '#009000';
+        }else if (node.neo4j_labels[0] == "Conglomerado" || node.neo4j_labels[1] == "Conglomerado") {
+          node.color = '#CA3030';
+        }else if (node.neo4j_labels[0] == "Partido" || node.neo4j_labels[1] == "Partido") {
+          node.color = '#F3FF00';
+        }else if (node.neo4j_labels[0] == "Politico" || node.neo4j_labels[1] == "Politico") {
+          node.color = '#0D00FF';
+        }
         node.label = node.neo4j_data.nombre;
       })
       s.startForceAtlas2({worker: true, barnesHutOptimize: false});
