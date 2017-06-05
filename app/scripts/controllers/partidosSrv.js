@@ -1,7 +1,7 @@
 angular.module('poliTweets')
     .service('partidosService', function($location,$http){
-    	var URL= 'http://localhost:8080/backend/partidos';
-        this.getPartidos = function(){ 
+    	var URL= 'http://107.170.99.162:8080/backend/partidos';
+        this.getPartidos = function(){
             return $http.get(URL);
         };
 
@@ -19,13 +19,13 @@ angular.module('poliTweets')
         this.editarPartido = function(partido, id){
             console.log(id)
             console.log(partido)
-            return $http.put('http://localhost:8080/backend/partidos/' + id, partido);
+            return $http.put('http://107.170.99.162:8080/backend/partidos/' + id, partido);
         };
 
         this.borrarPartido = function(partido, id){
             console.log(id)
             console.log(partido)
-            return $http.delete('http://localhost:8080/backend/partidos/' + id, partido)
+            return $http.delete('http://107.170.99.162:8080/backend/partidos/' + id, partido)
             .then(function(){
             	$location.url("/adminPartidos");
 				window.location.reload();
@@ -35,12 +35,12 @@ angular.module('poliTweets')
             });
         };
 
-        this.getPartidoKeywords = function(id){ 
-            return $http.get('http://localhost:8080/backend/partidos/'+id+'/keywords');
+        this.getPartidoKeywords = function(id){
+            return $http.get('http://107.170.99.162:8080/backend/partidos/'+id+'/keywords');
         };
 
         this.addKeywordPartido = function(keyword, id){
-            return $http.post('http://localhost:8080/backend/partidos/'+id+'/addkeyword',keyword)
+            return $http.post('http://107.170.99.162:8080/backend/partidos/'+id+'/addkeyword',keyword)
             .then(function(){
                 $location.url("/adminPartidos");
                 window.location.reload();
@@ -52,7 +52,7 @@ angular.module('poliTweets')
         this.removeKeywordPartido = function(keywordid, id){
             console.log("id partido:" + id)
             console.log("id keyword:" + keywordid)
-            return $http.delete('http://localhost:8080/backend/partidos/'+id+'/removekeyword/'+keywordid)
+            return $http.delete('http://107.170.99.162:8080/backend/partidos/'+id+'/removekeyword/'+keywordid)
             .then(function(){
                 $location.url("/adminPartidos");
                 window.location.reload();
@@ -62,23 +62,23 @@ angular.module('poliTweets')
             });
         };
 
-        this.getPartiApr = function(){ 
-            var URL2= 'http://localhost:8080/backend/metricas/aprobacion/partidos';
+        this.getPartiApr = function(){
+            var URL2= 'http://107.170.99.162:8080/backend/metricas/aprobacion/partidos';
             return $http.get(URL2);
         };
 
-        this.getCongloPos = function(){ 
-            var URL2= 'http://localhost:8080/backend/metricas/sentimientoPositivo/partidos';
+        this.getCongloPos = function(){
+            var URL2= 'http://107.170.99.162:8080/backend/metricas/sentimientoPositivo/partidos';
             return $http.get(URL2);
         };
 
-        this.getCongloNeg = function(){ 
-            var URL2= 'http://localhost:8080/backend/metricas/sentimientoNegativo/partidos';
+        this.getCongloNeg = function(){
+            var URL2= 'http://107.170.99.162:8080/backend/metricas/sentimientoNegativo/partidos';
             return $http.get(URL2);
         };
 
-        this.getCongloNeu = function(){ 
-            var URL2= 'http://localhost:8080/backend/metricas/sentimientoNeutro/partidos';
+        this.getCongloNeu = function(){
+            var URL2= 'http://107.170.99.162:8080/backend/metricas/sentimientoNeutro/partidos';
             return $http.get(URL2);
         };
 

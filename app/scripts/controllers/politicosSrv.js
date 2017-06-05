@@ -1,7 +1,7 @@
 angular.module('poliTweets')
     .service('politicosService', function($location,$http){
-    	var URL= 'http://localhost:8080/backend/politicos';
-        this.getPoliticos = function(){ 
+    	var URL= 'http://107.170.99.162:8080/backend/politicos';
+        this.getPoliticos = function(){
             return $http.get(URL);
         };
 
@@ -15,17 +15,17 @@ angular.module('poliTweets')
                 console.log(error);
             });
         };
-            
+
         this.editarPolitico = function(politico, id){
             console.log(id)
             console.log(politico)
-            return $http.put('http://localhost:8080/backend/politicos/' + id, politico);
+            return $http.put('http://107.170.99.162:8080/backend/politicos/' + id, politico);
         };
 
         this.borrarPolitico = function(politico, id){
             console.log(id)
             console.log(politico)
-            return $http.delete('http://localhost:8080/backend/politicos/' + id, politico)
+            return $http.delete('http://107.170.99.162:8080/backend/politicos/' + id, politico)
             .then(function(){
                 $location.url("/adminPartidos");
                 window.location.reload();
@@ -35,12 +35,12 @@ angular.module('poliTweets')
             });
         };
 
-        this.getPoliticoKeywords = function(id){ 
-            return $http.get('http://localhost:8080/backend/politicos/'+id+'/keywords');
+        this.getPoliticoKeywords = function(id){
+            return $http.get('http://107.170.99.162:8080/backend/politicos/'+id+'/keywords');
         };
 
         this.addKeywordPolitico = function(keyword, id){
-            return $http.post('http://localhost:8080/backend/politicos/'+id+'/addkeyword',keyword)
+            return $http.post('http://107.170.99.162:8080/backend/politicos/'+id+'/addkeyword',keyword)
             .then(function(){
                 $location.url("/adminPoliticos");
                 window.location.reload();
@@ -53,7 +53,7 @@ angular.module('poliTweets')
         this.removeKeywordPolitico = function(keywordid, id){
             console.log("id politico:" + id)
             console.log("id keyword:" + keywordid)
-            return $http.delete('http://localhost:8080/backend/politicos/'+id+'/removekeyword/'+keywordid)
+            return $http.delete('http://107.170.99.162:8080/backend/politicos/'+id+'/removekeyword/'+keywordid)
             .then(function(){
                 $location.url("/adminPoliticos");
                 window.location.reload();
@@ -63,23 +63,23 @@ angular.module('poliTweets')
             });
         };
 
-        this.getPoliApr = function(){ 
-            var URL1= 'http://localhost:8080/backend/metricas/aprobacion/politicos';
+        this.getPoliApr = function(){
+            var URL1= 'http://107.170.99.162:8080/backend/metricas/aprobacion/politicos';
             return $http.get(URL1);
         };
 
-        this.getPoliPos = function(){ 
-            var URL1= 'http://localhost:8080/backend/metricas/sentimientoPositivo/politicos';
+        this.getPoliPos = function(){
+            var URL1= 'http://107.170.99.162:8080/backend/metricas/sentimientoPositivo/politicos';
             return $http.get(URL1);
         };
 
-        this.getPoliNeg = function(){ 
-            var URL1= 'http://localhost:8080/backend/metricas/sentimientoNegativo/politicos';
+        this.getPoliNeg = function(){
+            var URL1= 'http://107.170.99.162:8080/backend/metricas/sentimientoNegativo/politicos';
             return $http.get(URL1);
         };
 
-        this.getPoliNeu = function(){ 
-            var URL1= 'http://localhost:8080/backend/metricas/sentimientoNeutro/politicos';
+        this.getPoliNeu = function(){
+            var URL1= 'http://107.170.99.162:8080/backend/metricas/sentimientoNeutro/politicos';
             return $http.get(URL1);
         };
 

@@ -1,7 +1,7 @@
 angular.module('poliTweets')
     .service('conglomeradosService', function($http,$location){
-    	var URL= 'http://localhost:8080/backend/conglomerados';
-        this.getConglomerados = function(){ 
+    	var URL= 'http://107.170.99.162:8080/backend/conglomerados';
+        this.getConglomerados = function(){
             return $http.get(URL);
         };
 
@@ -17,12 +17,12 @@ angular.module('poliTweets')
         };
 
         this.editarConglomerado = function(conglomerado, id){
-            return $http.put('http://localhost:8080/backend/conglomerados/' + id, conglomerado);
+            return $http.put('http://107.170.99.162:8080/backend/conglomerados/' + id, conglomerado);
         };
 
         this.borrarConglomerado = function(conglomerado, id){
             console.log(id)
-            return $http.delete('http://localhost:8080/backend/conglomerados/' + id, conglomerado)
+            return $http.delete('http://107.170.99.162:8080/backend/conglomerados/' + id, conglomerado)
             .then(function(){
                 $location.url("/adminConglomerados");
                 window.location.reload();
@@ -32,12 +32,12 @@ angular.module('poliTweets')
             });
         };
 
-        this.getConglomeradoKeywords = function(id){ 
-            return $http.get('http://localhost:8080/backend/conglomerados/'+id+'/keywords');
+        this.getConglomeradoKeywords = function(id){
+            return $http.get('http://107.170.99.162:8080/backend/conglomerados/'+id+'/keywords');
         };
 
         this.addKeywordConglomerado = function(keyword, id){
-            return $http.post('http://localhost:8080/backend/conglomerados/'+id+'/addkeyword',keyword)
+            return $http.post('http://107.170.99.162:8080/backend/conglomerados/'+id+'/addkeyword',keyword)
             .then(function(){
                 $location.url("/adminConglomerados");
                 window.location.reload();
@@ -50,7 +50,7 @@ angular.module('poliTweets')
         this.removeKeywordConglomerado = function(keywordid, id){
             console.log("id conglomerado:" + id)
             console.log("id keyword:" + keywordid)
-            return $http.delete('http://localhost:8080/backend/conglomerados/'+id+'/removekeyword/'+keywordid)
+            return $http.delete('http://107.170.99.162:8080/backend/conglomerados/'+id+'/removekeyword/'+keywordid)
             .then(function(){
                 $location.url("/adminConglomerados");
                 window.location.reload();
@@ -60,23 +60,23 @@ angular.module('poliTweets')
             });
         };
 
-        this.getCongloApr = function(){ 
-            var URL3= 'http://localhost:8080/backend/metricas/aprobacion/conglomerados';
+        this.getCongloApr = function(){
+            var URL3= 'http://107.170.99.162:8080/backend/metricas/aprobacion/conglomerados';
             return $http.get(URL3);
         };
 
-        this.getCongloPos = function(){ 
-            var URL3= 'http://localhost:8080/backend/metricas/sentimientoPositivo/conglomerados';
+        this.getCongloPos = function(){
+            var URL3= 'http://107.170.99.162:8080/backend/metricas/sentimientoPositivo/conglomerados';
             return $http.get(URL3);
         };
 
-        this.getCongloNeg = function(){ 
-            var URL3= 'http://localhost:8080/backend/metricas/sentimientoNegativo/conglomerados';
+        this.getCongloNeg = function(){
+            var URL3= 'http://107.170.99.162:8080/backend/metricas/sentimientoNegativo/conglomerados';
             return $http.get(URL3);
         };
 
-        this.getCongloNeu = function(){ 
-            var URL3= 'http://localhost:8080/backend/metricas/sentimientoNeutro/conglomerados';
+        this.getCongloNeu = function(){
+            var URL3= 'http://107.170.99.162:8080/backend/metricas/sentimientoNeutro/conglomerados';
             return $http.get(URL3);
         };
 
