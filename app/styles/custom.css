@@ -1,8 +1,11 @@
-body {
-}
-
 #wrapper{
   width: 100%;
+}
+
+h2{
+  font-size: 24px;
+  color: #004887;
+  font-family: 'Oswald', sans-serif;
 }
 
 .main{
@@ -11,12 +14,17 @@ body {
   margin: 0 auto;
   text-align: center;
 }
-s
+
 @media (min-width: 768px) {
   .main {
     padding-right: 40px;
     padding-left: 40px;
   }
+}
+
+.table>tbody>tr>th{
+  background-color: #005ba9;
+  color: #fff;
 }
 
 .content{
@@ -27,10 +35,29 @@ s
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
+
 .navbar{
+  font-family: 'Roboto', sans-serif;
   margin-bottom: 0px;
 } 
-	
+
+.navbar-inverse{
+  background-image: linear-gradient(to bottom,#00315c 0,#005298 100%);
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+    font-weight: bold;   
+}	
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+
+.dropdown-toggle:active, .open .dropdown-toggle {
+        background:transparent !important; 
+    }
+
 .navbar-static-top {
 	border: 0;
 	padding-left: 200px;
@@ -38,6 +65,7 @@ s
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+
 .sidebar{
   display: none;
 }
@@ -54,10 +82,19 @@ s
     padding-top: 50px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
+    background-color: #005298;
     border-right: 1px solid #eee;
   }
 }
+
+.nav > li > a {
+  color: #fff;
+  }
+
+.nav > li > a:hover{
+  
+  background-color: #00315c; 
+  }
 
 /* Sidebar navigation */
 .nav-sidebar {
@@ -65,10 +102,12 @@ s
   margin-bottom: 20px;
   margin-left: -20px;
 }
+
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
 }
+
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
@@ -87,40 +126,30 @@ s
     overflow:hidden;
     background-color:rgba(255,255,255,.8);
 }
+
 #login-dp .help-block{
     font-size:12px    
 }
+
 #login-dp .bottom{
     background-color:rgba(255,255,255,.8);
     border-top:1px solid #ddd;
     clear:both;
     padding:14px;
 }
+
 #login-dp .social-buttons{
     margin:12px 0    
 }
+
 #login-dp .social-buttons a{
     width: 49%;
 }
+
 #login-dp .form-group {
     margin-bottom: 10px;
 }
-.btn-fb{
-    color: #fff;
-    background-color:#3b5998;
-}
-.btn-fb:hover{
-    color: #fff;
-    background-color:#496ebc 
-}
-.btn-tw{
-    color: #fff;
-    background-color:#55acee;
-}
-.btn-tw:hover{
-    color: #fff;
-    background-color:#59b5fa;
-}
+
 @media(max-width:768px){
     #login-dp{
         background-color: inherit;
@@ -130,4 +159,13 @@ s
         background-color: inherit;
         border-top:0 none;
     }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #3c3c3c;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
 }
