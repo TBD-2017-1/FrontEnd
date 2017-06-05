@@ -1,12 +1,8 @@
 angular.module('poliTweets')
 	.controller('apPartidosCtrl', function($scope, $timeout, partidosService){
 
-	// PARA GRÁFICO ESTÁTICO
-		//$scope.text ='[{"date":"09-05-2017","info":[{"name":"Unión Demócrata Independiente","positive":77,"negative":122,"neutral":13},{"name":"Democracia Cristiana","positive":80,"negative":100,"neutral":12},{"name":"Partido Comunista","positive":60,"negative":120,"neutral":10},{"name":"Movimiento de izquierda revolucionario","positive":60,"negative":120,"neutral":7}]},{"date":"10-05-2017","info":[{"name":"Unión Demócrata Independiente","positive":80,"negative":110,"neutral":13},{"name":"Democracia Cristiana","positive":90,"negative":120,"neutral":22},{"name":"Partido Comunista","positive":20,"negative":150,"neutral":15},{"name":"Movimiento de izquierda revolucionario","positive":40,"negative":170,"neutral":17}]},{"date":"11-05-2017","info":[{"name":"Unión Demócrata Independiente","positive":70,"negative":122,"neutral":13},{"name":"Democracia Cristiana","positive":80,"negative":100,"neutral":12},{"name":"Partido Comunista","positive":60,"negative":120,"neutral":10},{"name":"Movimiento de izquierda revolucionario","positive":60,"negative":120,"neutral":7}]},{"date":"12-05-2017","info":[{"name":"Unión Demócrata Independiente","positive":84,"negative":100,"neutral":13},{"name":"Democracia Cristiana","positive":70,"negative":100,"neutral":12},{"name":"Partido Comunista","positive":50,"negative":120,"neutral":10},{"name":"Movimiento de izquierda revolucionario","positive":60,"negative":120,"neutral":7}]},{"date":"13-05-2017","info":[{"name":"Unión Demócrata Independiente","positive":73,"negative":98,"neutral":13},{"name":"Democracia Cristiana","positive":80,"negative":111,"neutral":12},{"name":"Partido Comunista","positive":70,"negative":120,"neutral":10},{"name":"Movimiento de izquierda revolucionario","positive":60,"negative":120,"neutral":7}]},{"date":"14-05-2017","info":[{"name":"Unión Demócrata Independiente","positive":82,"negative":110,"neutral":13},{"name":"Democracia Cristiana","positive":100,"negative":100,"neutral":2},{"name":"Partido Comunista","positive":90,"negative":120,"neutral":3},{"name":"Movimiento de izquierda revolucionario","positive":80,"negative":160,"neutral":10}]}]';
-		//$scope.timeline_data= JSON.parse($scope.text);
 	// PARA GRAFICO USANDO SERVICIO
-		$scope.timeline_data= [];		
-
+		$scope.timeline_data = [] ;
 
 		$scope.chartA;
 		$scope.chartB;
@@ -22,78 +18,190 @@ angular.module('poliTweets')
 		$scope.dates=[];               // elementos eje x del grafico (fechas)
 		$scope.columns_data=[];        // historial de aprobacion de cada participante
 
-		// auxiliares para calcular aprobacion y apreciaciones
-		$scope._posi;                  // cantidad de aprecioaciones positivas por fecha
-		$scope._neut;                  // cantidad de aprecioaciones neutrales por fecha
-		$scope._nega;                  // cantidad de aprecioaciones negativas por fecha
-		$scope.total_muestra= [];      // historial de muestras totales por fecha
+		function cargarTimeline(){
+			partidosService.getPartiApr().then(function(data){
+				var time_data = data.data;
+				$scope.timeline_data = time_data;
+				$scope.iniciarTimeline();
 
-		var i;
-		var j;
-		var k;
+				partidosService.getPartiApr().then(function(data){
+					var time_data = data.data;
+					$scope.timeline_data = time_data;
+					$scope.procesarApro();
+
+					partidosService.getPartiPos().then(function(data){
+						time_data = data.data;
+						$scope.timeline_data = time_data;
+						$scope.procesarPosi();
+
+						partidosService.getPartiNeg().then(function(data){
+							time_data = data.data;
+							$scope.timeline_data = time_data;
+								$scope.procesarNega();
+
+							partidosService.getPartiNeu().then(function(data){
+								time_data = data.data;
+								$scope.timeline_data = time_data;
+								$scope.procesarNeut();
+
+								$scope.showGraphA();
+								$scope.showGraphB();
+
+							}, function(error){
+								console.log(error, "error4");
+							});
+
+						}, function(error){
+							console.log(error, "error3");
+						});
+
+					}, function(error){
+						console.log(error, "error2");
+					});
+
+				}, function(error){
+					console.log(error, "error1");
+				});
+
+			}, function(error){
+				console.log(error, "error1");
+			});
+		}
+		cargarTimeline();
 
 
-		$scope.procesarTimeline = function(){
+		$scope.iniciarTimeline = function(){
+			// preparan valores iniciales para las columnas de chart2 (un arreglo por participante)
+			// y para el eje Y de chart1
+			var name_ID_aux = $scope.timeline_data[0].politico_metrica.id;	// id pivote
+			var j = 0;
+			
+			for (j in $scope.timeline_data) {                								// buscar cada entidad en el JSON
+				
+				var first_name = $scope.timeline_data[j].politico_metrica.nombre;
+				var last_name = $scope.timeline_data[j].politico_metrica.apellido;
+				
+				if(j == 0){
+					$scope.names.push( first_name +" "+ last_name);
+				}
+				else if( name_ID_aux == $scope.timeline_data[j].politico_metrica.id ){ 
+						break;
+				}
+				else{
+					$scope.names.push( first_name +" "+ last_name);
+				}
 
-			// prepara valores iniciales para las columnas de chart2 (un arreglo por participante)
-			for (j in $scope.timeline_data[0].info) {                // por cada participante en el JSON
-				$scope.names.push($scope.timeline_data[0].info[j].name);
-
-				$scope.elem_aux= [$scope.timeline_data[0].info[j].name];
-				$scope.columns_data[j]=$scope.elem_aux;
+				var elem_aux= [];
+				elem_aux[0] = first_name +" "+ last_name;
+				$scope.columns_data[j]= elem_aux;
 			}
 
 			// se cargan los elementos del eje x para el grafico chart2
 			j= 0;
-			for (j in $scope.timeline_data) {                        // por cada fecha en el JSON
-				$scope.dates.push($scope.timeline_data[j].date);
+			while (j < $scope.timeline_data.length) {                        // por cada fecha en el JSON
+				$scope.dates.push($scope.timeline_data[j].fecha);
+				j += $scope.names.length;
 			}
+		}
 
+
+		$scope.procesarApro = function(){
 			// completa la informacion de las columnas de chart 2
-			for (i in $scope.columns_data) {                         // para cada participante en el JSON
+			var cantidad_entidades = $scope.names.length;
+			var cantidad_time_data = $scope.timeline_data.length;
+			var i = 0;
+			while (i < cantidad_entidades) {													// por cada entidad registrada
+				
+				var k = i;
+			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
+					
+					var valor;
+					valor = $scope.timeline_data[k].valor / 100;
+			  	$scope.columns_data[i].push(valor);		// agregar info a la linea temporal de chart2
 
-				k = 0;
-			  for (k in $scope.timeline_data) {                      // por cada fecha en el JSON
-			  	$scope._posi= $scope.timeline_data[k].info[i].positive;
-			    $scope._neut= $scope.timeline_data[k].info[i].neutral;      // almacenar apreciaciones
-			    $scope._nega= $scope.timeline_data[k].info[i].negative;
+					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
+						$scope.aprob.push(valor);		// agregar tambien a chart1
+					}
 
-			    $scope.total_individual= $scope._posi + $scope._neut + $scope._nega;  // total aprec. para este participante en una fecha
-
-			    if($scope.total_muestra[k] == null){
-			      $scope.total_muestra[k]= $scope.total_individual;         // guardar total de aprec. en la fecha
-			    }
-			    else{
-			      $scope.total_muestra[k]+= $scope.total_individual;        // o bien, sumarlo al total de aprec. en la fecha
-			    }
-
-			    $scope.aux_aprob= 0.5 + 0.5*($scope._posi/ $scope.total_individual - $scope._nega/ $scope.total_individual);
-
-			    $scope.columns_data[i].push($scope.aux_aprob*100);          // establecer aprob de un participante en la fecha
-
-			    if(k == ($scope.timeline_data.length - 1)){          // si se trata de la ultima fecha registrada
-
-			    	$scope.tasa_neg.push(($scope._nega / $scope.total_individual)*100);
-			      $scope.tasa_neu.push(($scope._neut / $scope.total_individual)*100);   // guardar ultimos datos de aprec de los participantes
-			      $scope.tasa_pos.push(($scope._posi / $scope.total_individual)*100);
-			      $scope.aprob.push($scope.aux_aprob*100);
-
-			    }
+					k += cantidad_entidades;
 			  }
+
+			  i += 1;
 			}
 		}
 
-		$scope.cargarTimelineParti = function(){
-			partidosService.getPartiTimeline().then(function(data){
-				$scope.timeline_data= data;
+		$scope.procesarPosi = function(){
+			// completa la informacion de las columnas de chart 2
+			var cantidad_entidades = $scope.names.length;
+			var cantidad_time_data = $scope.timeline_data.length;
+			var i = 0;
+			while (i < cantidad_entidades) {													// por cada entidad registrada
 				
-				console.log($scope.timeline_data);
-				//$scope.procesarTimeline();
+				var k = i;
+			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
+					
+					var valor;
+					valor = $scope.timeline_data[k].valor / 100;
 
-			}, function(error){
-				console.log(error, "error2");	
-			});
+					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
+						$scope.tasa_pos.push(valor);		// agregar tambien a chart1
+					}
+
+					k += cantidad_entidades;
+			  }
+			  
+			  i += 1;
+			}
 		}
+
+		$scope.procesarNega = function(){
+			// completa la informacion de las columnas de chart 2
+			var cantidad_entidades = $scope.names.length;
+			var cantidad_time_data = $scope.timeline_data.length;
+			var i = 0;
+			while (i < cantidad_entidades) {													// por cada entidad registrada
+				
+				var k = i;
+			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
+					
+					var valor;
+					valor = $scope.timeline_data[k].valor / 100;
+
+					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
+						$scope.tasa_neg.push(valor);		// agregar tambien a chart1
+					}
+
+					k += cantidad_entidades;
+			  }
+			  
+			  i += 1;
+			}
+		}
+
+		$scope.procesarNeut = function(){
+			// completa la informacion de las columnas de chart 2
+			var cantidad_entidades = $scope.names.length;
+			var cantidad_time_data = $scope.timeline_data.length;
+			var i = 0;
+			while (i < cantidad_entidades) {													// por cada entidad registrada
+				
+				var k = i;
+			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
+					
+					var valor;
+					valor = $scope.timeline_data[k].valor / 100;
+
+					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
+						$scope.tasa_neu.push(valor);		// agregar tambien a chart1
+					}
+
+					k += cantidad_entidades;
+			  }
+			  
+			  i += 1;
+			}
+		}
+
 
 		$scope.showGraphA = function() {
       $scope.chartA = c3.generate({
@@ -110,7 +218,7 @@ angular.module('poliTweets')
           type: 'category',
           categories: $scope.names,
             label: { // ADD
-              text: 'Conglomerados',
+              text: 'Políticos',
               position: 'outer-middle'
             }
           },
@@ -137,8 +245,11 @@ angular.module('poliTweets')
 
       $scope.chartA.groups([['Tasa Negativa', 'Tasa Positiva', 'Tasa Neutral' ]]);
 		}
- 
+    
     $scope.showGraphB = function() {
+    	console.log($scope.dates);
+    	console.log($scope.columns_data);
+
       $scope.chartB = c3.generate({
 
         bindto: '#chart2',
