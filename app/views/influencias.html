@@ -67,7 +67,7 @@
   sigma.neo4j.cypher(
     {url: 'http://107.170.99.162:7474', user: 'neo4j', password: 'DigitalOceanServer'},
     "match p=(b)-[r:Tweet]->(a) where size((b)-[:Tweet]->()) > 1 return p",
-    {container: 'graph-container'}
+    {container: 'graph-container'},
     function(s){
       s.settings({
           edgeColor: 'default',
