@@ -78,7 +78,7 @@ angular.module('poliTweets')
 				});
 			}
 
-			politicosService.getPoliticos().then(function(data){			
+			politicosService.getPoliticos().then(function(data){
 				$scope.politicos = data;
 			}, function(error){
 			});
@@ -91,16 +91,16 @@ angular.module('poliTweets')
 			// y para el eje Y de chart1
 			var name_ID_aux = $scope.timeline_data[0].politico.id;	// id pivote
 			var j = 0;
-			
+
 			for (j in $scope.timeline_data) {                								// buscar cada entidad en el JSON
-				
+
 				var first_name = $scope.timeline_data[j].politico.nombre;
 				var last_name = $scope.timeline_data[j].politico.apellido;
-				
+
 				if(j == 0){
 					$scope.names.push( first_name +" "+ last_name);
 				}
-				else if( name_ID_aux == $scope.timeline_data[j].politico.id ){ 
+				else if( name_ID_aux == $scope.timeline_data[j].politico.id ){
 						break;
 				}
 				else{
@@ -127,10 +127,10 @@ angular.module('poliTweets')
 			var cantidad_time_data = $scope.timeline_data.length;
 			var i = 0;
 			while (i < cantidad_entidades) {													// por cada entidad registrada
-				
+
 				var k = i;
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
-					
+
 					var valor;
 					valor = $scope.timeline_data[k].valor / 100;
 			  	$scope.columns_data[i].push(valor);		// agregar info a la linea temporal de chart2
@@ -152,10 +152,10 @@ angular.module('poliTweets')
 			var cantidad_time_data = $scope.timeline_data.length;
 			var i = 0;
 			while (i < cantidad_entidades) {													// por cada entidad registrada
-				
+
 				var k = i;
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
-					
+
 					var valor;
 					valor = $scope.timeline_data[k].valor / 100;
 
@@ -165,7 +165,7 @@ angular.module('poliTweets')
 
 					k += cantidad_entidades;
 			  }
-			  
+
 			  i += 1;
 			}
 		}
@@ -176,10 +176,10 @@ angular.module('poliTweets')
 			var cantidad_time_data = $scope.timeline_data.length;
 			var i = 0;
 			while (i < cantidad_entidades) {													// por cada entidad registrada
-				
+
 				var k = i;
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
-					
+
 					var valor;
 					valor = $scope.timeline_data[k].valor / 100;
 
@@ -189,7 +189,7 @@ angular.module('poliTweets')
 
 					k += cantidad_entidades;
 			  }
-			  
+
 			  i += 1;
 			}
 		}
@@ -200,10 +200,10 @@ angular.module('poliTweets')
 			var cantidad_time_data = $scope.timeline_data.length;
 			var i = 0;
 			while (i < cantidad_entidades) {													// por cada entidad registrada
-				
+
 				var k = i;
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
-					
+
 					var valor;
 					valor = $scope.timeline_data[k].valor / 100;
 
@@ -213,7 +213,7 @@ angular.module('poliTweets')
 
 					k += cantidad_entidades;
 			  }
-			  
+
 			  i += 1;
 			}
 		}
@@ -246,8 +246,8 @@ angular.module('poliTweets')
           },
           rotated: true
         }
-      	
-      });     
+
+      });
     }
 
     $scope.updateGraphA = function(){
@@ -261,7 +261,7 @@ angular.module('poliTweets')
 
       $scope.chartA.groups([['Tasa Negativa', 'Tasa Positiva', 'Tasa Neutral' ]]);
 		}
-    
+
     $scope.showGraphB = function() {
     	console.log($scope.dates);
     	console.log($scope.columns_data);
@@ -290,7 +290,7 @@ angular.module('poliTweets')
         }
       });
     }
-    
+
 		$timeout($scope.updateGraphA, 6000);
 
 });
