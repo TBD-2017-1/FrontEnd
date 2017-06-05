@@ -81,7 +81,7 @@ angular.module('poliTweets')
 				var first_name = $scope.timeline_data[j].conglomerado.nombre;
 
 				if(j == 0){
-					$scope.names.push( first_name +" "+ last_name);
+					$scope.names.push( first_name );
 				}
 				else if( name_ID_aux == $scope.timeline_data[j].conglomerado.id ){
 						break;
