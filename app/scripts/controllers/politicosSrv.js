@@ -63,23 +63,23 @@ angular.module('poliTweets')
             });
         };
 
-        this.getPoliApr = function(){
-            var URL1= 'http://107.170.99.162:8080/backend/metricas/aprobacion/politicos';
+        this.getPoliApr = function(id){ 
+            var URL1= 'http://localhost:8080/backend/metricas/aprobacion/politicos/'+id;
             return $http.get(URL1);
         };
 
-        this.getPoliPos = function(){
-            var URL1= 'http://107.170.99.162:8080/backend/metricas/sentimientoPositivo/politicos';
+        this.getPoliPos = function(id){ 
+            var URL1= 'http://localhost:8080/backend/metricas/sentimientoPositivo/politicos/'+id;
             return $http.get(URL1);
         };
 
-        this.getPoliNeg = function(){
-            var URL1= 'http://107.170.99.162:8080/backend/metricas/sentimientoNegativo/politicos';
+        this.getPoliNeg = function(id){ 
+            var URL1= 'http://localhost:8080/backend/metricas/sentimientoNegativo/politicos/'+id;
             return $http.get(URL1);
         };
 
-        this.getPoliNeu = function(){
-            var URL1= 'http://107.170.99.162:8080/backend/metricas/sentimientoNeutro/politicos';
+        this.getPoliNeu = function(id){ 
+            var URL1= 'http://localhost:8080/backend/metricas/sentimientoNeutro/politicos/'+id;
             return $http.get(URL1);
         };
 
