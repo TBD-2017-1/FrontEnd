@@ -73,18 +73,18 @@ angular.module('poliTweets')
 		$scope.iniciarTimeline = function(){
 			// preparan valores iniciales para las columnas de chart2 (un arreglo por participante)
 			// y para el eje Y de chart1
-			var name_ID_aux = $scope.timeline_data[0].politico_metrica.id;	// id pivote
+			var name_ID_aux = $scope.timeline_data[0].partido_metrica.id;	// id pivote
 			var j = 0;
 			
 			for (j in $scope.timeline_data) {                								// buscar cada entidad en el JSON
 				
-				var first_name = $scope.timeline_data[j].politico_metrica.nombre;
-				var last_name = $scope.timeline_data[j].politico_metrica.apellido;
+				var first_name = $scope.timeline_data[j].partido_metrica.nombre;
+				var last_name = $scope.timeline_data[j].partido_metrica.apellido;
 				
 				if(j == 0){
 					$scope.names.push( first_name +" "+ last_name);
 				}
-				else if( name_ID_aux == $scope.timeline_data[j].politico_metrica.id ){ 
+				else if( name_ID_aux == $scope.timeline_data[j].partido_metrica.id ){ 
 						break;
 				}
 				else{
