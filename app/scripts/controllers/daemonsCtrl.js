@@ -1,18 +1,37 @@
 angular.module('poliTweets')
 	.controller('daemonsCtrl', function($scope,daemonsService){
 		$scope.estado = {};
-		$scope.enviar = {};
-	  	$scope.message = 'off';
+
+
+	  	daemonsService.getDaemon().then(function(data){			
+				$scope.estado = data.data.status;
+
+				if($scope.estado == "off"){ $scope.message = "Recolectores desactivados";}
+			    else{ $scope.message = "Recolectores activados";}
+
+				console.log($scope.estado);
+			}, function(error){
+			});
+
+	  	
 
 	  	function Daemons(){
 		  	$scope.onChange = function(state) {
-		    if(state == false){ $scope.message = "off";}
-		    else{ $scope.message = "on";}
-		    $scope.enviar = { collector : state };
-		    daemonsService.setEstado($scope.enviar);
+
+			    daemonsService.setEstado().then(function(data){			
+					$scope.newEstado = data;
+					console.log($scope.newEstado);
+				}, function(error){
+				});
+
+				if($scope.newEstado == "off"){ $scope.message = "Recolectores desactivados";}
+			    else{ $scope.message = "Recolectores activados";}
+
 		 	};
+
 		 }
 
+		 
 		Daemons();
 
 	});

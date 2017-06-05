@@ -24,7 +24,6 @@ angular.module('poliTweets')
 				politicosService.getPoliticoKeywords($scope.setID).then(function(data){
 					$scope.politicoKeywords = data;
 				},function(error){
-					console.log(error, "noooo error");
 				});
 
 			}
@@ -50,19 +49,16 @@ angular.module('poliTweets')
 			politicosService.getPoliticos().then(function(data){			
 				$scope.politicos = data;
 			}, function(error){
-					console.log(error, "noooo error");		
 			});
 
 			partidosService.getPartidos().then(function(data){
 				$scope.partidos= data;
 			}, function(error){
-					console.log(error, "noooo error");	
 			});
 
 			conglomeradosService.getConglomerados().then(function(data){
 				$scope.conglomerados= data;
 			}, function(error){
-					console.log(error, "noooo error");	
 			});
 
 		}

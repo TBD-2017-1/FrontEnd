@@ -49,13 +49,11 @@ angular.module('poliTweets')
 			partidosService.getPartidos().then(function(data){
 				$scope.partidos= data;
 			}, function(error){
-					console.log(error, "noooo error");	
 			});
 
 			conglomeradosService.getConglomerados().then(function(data){
 				$scope.conglomerados= data;
 			}, function(error){
-					console.log(error, "noooo error");	
 			});
 
 		}

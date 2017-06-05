@@ -1,10 +1,12 @@
 angular.module('poliTweets')
     .service('daemonsService', function($http){
-    	var URL= 'http://localhost:8080/backend/admins/daemons';
 
-        this.setEstado = function(state){
-            console.log(state);
-/*            return $http.PUT(URL,state);
-*/        };
+		this.getDaemon = function(){ 
+            return $http.get('http://localhost:8080/backend/daemon/status');
+        };
+
+        this.setEstado = function(){
+            return $http.get('http://localhost:8080/backend/daemon/toggle');
+        };
        
     });
