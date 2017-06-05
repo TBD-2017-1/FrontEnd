@@ -2,6 +2,15 @@
 
   <div id="wrapper">
       <div class="col-mid-12 main">
+        
+        <div class="row"><form>
+          <div class="form-group col-sm-6">
+            <label for="SelectPolitico">Seleccione un político:</label>
+            <select id="selectPolitico" class="form-control" ng-model="selectPolitico" ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '-id'" ng-click="setPolitico(selectPolitico)">
+          </select>
+          </div>
+        </form></div>
+        
         <div class="row content">
           <h1>Políticos</h1>
           <h2>Percepción Ciudadana el dia de ayer:</h2>
