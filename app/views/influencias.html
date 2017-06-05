@@ -64,17 +64,30 @@
 </div>
 
 <script type="application/javascript">
+
   sigma.neo4j.cypher(
     {url: 'http://107.170.99.162:7474', user: 'neo4j', password: 'DigitalOceanServer'},
-    "match p=(b)-[r:Tweet]->(a) where size((b)-[:Tweet]->()) > 1 return p",
+    "match p=(b)-[r:Tweet]->(a) where size((b)-[:Tweet]->()) > 1 return p,labels(a)",
     {container: 'graph-container'},
     function(s){
       s.settings({
           edgeColor: 'default',
-          defaultEdgeColor: '#457360',
+          defaultEdgeColor: '#6f6f73'
         });
       s.graph.nodes().forEach(function(node){
-        node.color = node.neo4j_labels[0] == "Usuario"?'#009000':'#CA3030';
+          if(node.neo4j_labels.indexOf("Conglomerado") > -1) {
+              node.color = '#b62d17';
+              node.size = 21;
+          }else if(node.neo4j_labels.indexOf("Partido") > -1) {
+              node.color = '#009000';
+              node.size = 13;
+          }else if(node.neo4j_labels.indexOf("Politico") > -1) {
+              node.color = '#1360b3';
+              node.size = 8;
+          }else{
+              node.color = '#aaae2a';
+              node.size = 2;
+          }
         node.label = node.neo4j_data.nombre;
       })
       s.startForceAtlas2({worker: true, barnesHutOptimize: false});
