@@ -48,20 +48,41 @@
 <script src="../lib/sigma.layout.forceAtlas2.min.js"></script>
 <!-- END SIGMA IMPORTS -->
 <script src="../plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
-<style>
-  #network-graph {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-  }
-</style>
 
 <!-- A placeholder for the graph -->
-<div id="network-graph"></div>
+<div id="container">
+  <style>
+    #graph-container {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+    }
+  </style>
+  <div id="graph-container"></div>
+</div>
+
+<script>
+  sigma.neo4j.cypher(
+    <!-- aca JSON obtenido de backend -->
+    function(s){
+      s.settings({
+          edgeColor: 'default',
+          defaultEdgeColor: '#457360',
+        });
+      s.graph.nodes().forEach(function(node){
+        node.color = node.neo4j_labels[0] == "Usuario"?'#457360':'#CCCC8f';
+        node.label = node.neo4j_data.title?node.neo4j_data.title:node.neo4j_data.name;
+      })
+      s.startForceAtlas2({worker: true, barnesHutOptimize: false});
+      s.refresh();
+    }
+  );
+</script>
 
 <!-- The most basic usage of the Sigma JSON parser -->
+<!--
 <script>
 function getParameterByName(name) {
   var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
@@ -91,3 +112,4 @@ sigma.parsers.json( "/data/geolocalized.json",
     }
   });
 </script>
+-->
