@@ -1,4 +1,5 @@
 <!-- START SIGMA IMPORTS -->
+<!--
 <script src="../src/sigma.core.js"></script>
 <script src="../src/conrad.js"></script>
 <script src="../src/utils/sigma.utils.js"></script>
@@ -46,6 +47,10 @@
 <script src="../src/misc/sigma.misc.bindDOMEvents.js"></script>
 <script src="../src/misc/sigma.misc.drawHovers.js"></script>
 <script src="../lib/sigma.layout.forceAtlas2.min.js"></script>
+-->
+<script src="../lib/sigma.layout.forceAtlas2.min.js"></script>
+<script src="../lib/sigma.min.js"></script>
+<script src="../lib/sigma.neo4j.cypher.min.js"></script>
 <!-- END SIGMA IMPORTS -->
 <script src="../plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
 
@@ -63,9 +68,11 @@
   <div id="graph-container"></div>
 </div>
 
-<script>
+<script type="application/javascript">
   sigma.neo4j.cypher(
-    <!-- aca JSON obtenido de backend -->
+    {url: 'http://107.170.99.162:7474', user: 'neo4j', password: 'DigitalOceanServer'},
+    "match (a:Entidad {nombre: conglomerado}) with a limit 10 match (b)-[r]->(a) return a, b, r",
+    {container: 'graph-container'}
     function(s){
       s.settings({
           edgeColor: 'default',
