@@ -12,9 +12,124 @@
   <link rel="stylesheet" href="styles/custom.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto" rel="stylesheet">
+  <!-- Custom Fonts -->
+  <link href="styles/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
 
 
 </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-app="poliTweets" ng-controller="loginCtrl">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-twitter fa-fw"></i> <span class="light">PoliTweets</span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#conglomerados">Conglomerados</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#partidos">Partidos</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#politicos">Politicos</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#influencias">Influencia</a>
+                    </li>
+                    <a href="#page-top" class="btn-poli btn-lg">Admin</a>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container-fluid">
+    <div class="row">
+      <ng-view></ng-view>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; PoliTweetsCL Your Website 2016</p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/grayscale.min.js"></script>
+
+    <!-- Recursos de bower-->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!--   <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="scripts/controllers/angular-cookies.min.js.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script> -->
+    <!-- Angular Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <!-- Recursos personales-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/angular-resource.min.js"></script>
+    <script src="scripts/controllers/apConglomeradosCtrl.js"></script>
+    <script src="scripts/controllers/apPartidosCtrl.js"></script>
+    <script src="scripts/controllers/apPoliticosCtrl.js"></script>
+    <script src="scripts/controllers/conglomeradosCtrl.js"></script>
+    <script src="scripts/controllers/conglomeradosSrv.js"></script>
+    <script src="scripts/controllers/mainCtrl.js"></script>
+    <script src="scripts/controllers/partidosCtrl.js"></script>
+    <script src="scripts/controllers/partidosSrv.js"></script>
+    <script src="scripts/controllers/politicosCtrl.js"></script>
+    <script src="scripts/controllers/politicosSrv.js"></script>
+    <script src="scripts/controllers/daemonsCtrl.js"></script>
+    <script src="scripts/controllers/daemonsSrv.js"></script>
+    <script src="scripts/controllers/loginCtrl.js"></script>
+    <script src="scripts/controllers/loginSrv.js"></script>
+        <!-- C3 GRAPHICS core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Sigma JS libs -->
+    <script src="lib/sigma.min.js"></script>
+    <script src="plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
+    <script src="lib/sigma.neo4j.cypher.min.js"></script>
+    <script src="lib/sigma.layout.forceAtlas2.min.js"></script>
+
+</body>
+
+
 <body ng-app="poliTweets" ng-controller="loginCtrl">
 <div class="row">
     <nav class="navbar navbar-inverse navbar-static-top">
