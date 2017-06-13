@@ -1,26 +1,37 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>PoliTweets</title>
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  <link rel="stylesheet" href="styles/bootstrap-theme.css">
-  <link rel="stylesheet" href="styles/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="styles/bootstrap.css">
-  <link rel="stylesheet" href="styles/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/custom.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto" rel="stylesheet">
-  <!-- Custom Fonts -->
-  <link href="styles/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>PoliTweets</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-app="poliTweets" ng-controller="loginCtrl">
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -61,15 +72,108 @@
         <!-- /.container -->
     </nav>
 
-    <div class="container-fluid">
-    <div class="row">
-      <ng-view></ng-view>
-    </div>
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">PoliTweets</h1>
+                        <p class="intro-text">Estadísticas diarias de políticos en Twitter
+                          <br></br>
+                        <a href="#conglomerados" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conglomerados Section -->
+    <section id="conglomerados" class="content-section text-center">
+        <div class="row">
+          <div class="col-lg-6">
+              <h2>Conglomerados div 1</h2>
+              <p>Conglomerados sección gráficos</p>
+              <a href="#page-top" class="btn-poli btn-lg">Gráficos</a>
+          </div>
+          <div class="col-lg-6">
+                <h2>Conglomerados div 2</h2>
+                <p>Conglomerados sección Ranking</p>
+                <a href="#page-top" class="btn-poli btn-lg">Rankings</a>
+          </div>
+        </div>
+    </section>
+
+    <!-- Partidos Section -->
+    <section id="partidos" class="content-section text-center">
+        <div class="row">
+          <div class="col-lg-6">
+              <h2>Conglomerados div 1</h2>
+              <p>Conglomerados sección gráficos</p>
+              <a href="#page-top" class="btn-poli btn-lg">Gráficos</a>
+          </div>
+          <div class="col-lg-6">
+                <h2>Conglomerados div 2</h2>
+                <p>Conglomerados sección Ranking</p>
+                <a href="#page-top" class="btn-poli btn-lg">Rankings</a>
+          </div>
+          <!--
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Partidos</h2>
+                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                </div>
+            </div>
+          -->
+        </div>
+    </section>
+
+    <!-- Politicos Section -->
+    <section id="politicos" class="content-section text-center">
+        <div class="row">
+          <div class="col-lg-6">
+              <h2>Conglomerados div 1</h2>
+              <p>Conglomerados sección gráficos</p>
+              <a href="#page-top" class="btn-poli btn-lg">Gráficos</a>
+          </div>
+          <div class="col-lg-6">
+                <h2>Conglomerados div 2</h2>
+                <p>Conglomerados sección Ranking</p>
+                <a href="#page-top" class="btn-poli btn-lg">Rankings</a>
+          </div>
+        </div>
+    </section>
+
+    <!-- Influencias Section -->
+    <section id="influencias" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Influencias</h2>
+                <a href="#page-top" class="btn-poli btn-lg">Ir</a>
+                <!--
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                    </li>
+                </ul>
+              -->
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; PoliTweetsCL Your Website 2016</p>
+            <p>Copyright &copy; Your Website 2016</p>
         </div>
     </footer>
 
@@ -85,177 +189,6 @@
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
 
-    <!-- Recursos de bower-->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <!--   <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="scripts/controllers/angular-cookies.min.js.js"></script>
-    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script> -->
-    <!-- Angular Library -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <!-- Recursos personales-->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/angular-resource.min.js"></script>
-    <script src="scripts/controllers/apConglomeradosCtrl.js"></script>
-    <script src="scripts/controllers/apPartidosCtrl.js"></script>
-    <script src="scripts/controllers/apPoliticosCtrl.js"></script>
-    <script src="scripts/controllers/conglomeradosCtrl.js"></script>
-    <script src="scripts/controllers/conglomeradosSrv.js"></script>
-    <script src="scripts/controllers/mainCtrl.js"></script>
-    <script src="scripts/controllers/partidosCtrl.js"></script>
-    <script src="scripts/controllers/partidosSrv.js"></script>
-    <script src="scripts/controllers/politicosCtrl.js"></script>
-    <script src="scripts/controllers/politicosSrv.js"></script>
-    <script src="scripts/controllers/daemonsCtrl.js"></script>
-    <script src="scripts/controllers/daemonsSrv.js"></script>
-    <script src="scripts/controllers/loginCtrl.js"></script>
-    <script src="scripts/controllers/loginSrv.js"></script>
-        <!-- C3 GRAPHICS core -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <!-- Sigma JS libs -->
-    <script src="lib/sigma.min.js"></script>
-    <script src="plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
-    <script src="lib/sigma.neo4j.cypher.min.js"></script>
-    <script src="lib/sigma.layout.forceAtlas2.min.js"></script>
-
 </body>
 
-
-<body ng-app="poliTweets" ng-controller="loginCtrl">
-<div class="row">
-    <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#/home">Politweets</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aprobación
-                <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#/aprobacionPartidos">Partidos Políticos</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#/aprobacionConglomerados">Conglomerados</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#/aprobacionPoliticos">Políticos</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rankings
-                <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#/rankingPartidos">Partidos Políticos</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#/rankingConglomerados">Conglomerados</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#/rankingPoliticos">Políticos</a></li>
-              </ul>
-            </li>
-
-            <li><a href="#/influencias">Influencias</a></li>
-            <li><a href="#">Mapa Político</a></li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right" >
-            <li class="dropdown" ng-show="!username">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-              <ul id="login-dp" class="dropdown-menu">
-                <li>
-                   <div class="row">
-                      <div class="col-md-12">
-                         <form class="form"  action="/" accept-charset="UTF-8" id="login-nav" ng-submit="login()">
-                            <div class="form-group">
-                               <label for="exampleInputEmail2">Usuario</label>
-                               <input type="text" class="form-control" id="eUser2" placeholder="Usuario" ng-model="usuario" required>
-                            </div>
-                            <div class="form-group">
-                               <label for="exampleInputPassword2">Contraseña</label>
-                               <input type="password" class="form-control" id="ePassword2" placeholder="Contraseña" ng-model="contrasena" required>
-                            </div>
-                            <div class="form-group">
-                               <button type="button" class="btn btn-primary btn-block" ng-click="login()" type="submit">Entrar</button>
-                            </div>
-
-                         </form>
-                      </div>
-                   </div>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown" ng-show="username">
-              <a href="#/admin">Administrar</a>
-            </li>
-            <li class="dropdown" ng-show="username">
-              <button type="button" class="btn btn-primary btn-block" ng-click="logout()">Cerrar Sesión</button>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </nav>
-</div>
-<div class="container-fluid">
-<div class="row">
-  <ng-view></ng-view>
-</div>
-</div>
-  <!-- Recursos de bower-->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<!--   <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="scripts/controllers/angular-cookies.min.js.js"></script>
-  <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script> -->
-  <!-- Angular Library -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  <!-- Recursos personales-->
-  <script src="scripts/app.js"></script>
-  <script src="scripts/controllers/angular-resource.min.js"></script>
-  <script src="scripts/controllers/apConglomeradosCtrl.js"></script>
-  <script src="scripts/controllers/apPartidosCtrl.js"></script>
-  <script src="scripts/controllers/apPoliticosCtrl.js"></script>
-  <script src="scripts/controllers/conglomeradosCtrl.js"></script>
-  <script src="scripts/controllers/conglomeradosSrv.js"></script>
-  <script src="scripts/controllers/mainCtrl.js"></script>
-  <script src="scripts/controllers/partidosCtrl.js"></script>
-  <script src="scripts/controllers/partidosSrv.js"></script>
-  <script src="scripts/controllers/politicosCtrl.js"></script>
-  <script src="scripts/controllers/politicosSrv.js"></script>
-  <script src="scripts/controllers/daemonsCtrl.js"></script>
-  <script src="scripts/controllers/daemonsSrv.js"></script>
-  <script src="scripts/controllers/loginCtrl.js"></script>
-  <script src="scripts/controllers/loginSrv.js"></script>
-      <!-- C3 GRAPHICS core -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <!-- Sigma JS libs -->
-  <script src="lib/sigma.min.js"></script>
-  <script src="plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
-  <script src="lib/sigma.neo4j.cypher.min.js"></script>
-  <script src="lib/sigma.layout.forceAtlas2.min.js"></script>
-
-</body>
 </html>
