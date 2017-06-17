@@ -1,6 +1,6 @@
 (function(){
 
-    angular.module('poliTweets', ['ngRoute','ngCookies','ngResource','ngMaterial','ngMessages'])
+    angular.module('poliTweets', ['ngRoute','ngCookies','ngResource','ngMaterial','ngMessages', 'duScroll'])
     .config(function($routeProvider){
         $routeProvider
         .when('/home', {
@@ -100,5 +100,3 @@
     });
 
 })();
-
-
