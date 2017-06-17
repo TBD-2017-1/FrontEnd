@@ -113,7 +113,7 @@ a:focus {
   }
   .navbar-custom.top-nav-collapse {
     padding: 0;
-    background: blue;
+    background: #0084b4;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 }
@@ -324,14 +324,35 @@ body {
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   border-radius: 1;
-  border: 1px solid blue;
-  color: blue;
+  border: 1px solid #0084b4;
+  color: #0084b4;
   background-color: transparent;
 }
 .btn-poli:hover,
 .btn-poli:focus{
-  border: 1px solid blue;
+  border: 1px solid #0084b4;
   outline: none;
   color: white;
-  background-color: blue;
+  background-color: #0084b4;
+}
+.content-section-poli{
+  padding-top: 10%;
+  padding-bottom: 10%;
+  color: #0084b4;
+  text-shadow: 2px 2px 8px #55bfff;
+  background-color: white;
+}
+.background-poli{
+  background-image:url('../img/confidencial.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.title-text-poli{
+  color: #0084b4;
+  text-shadow: 2px 2px 8px #55bfff;
+}
+.footer-poli{
+  height: 50%;
+  color: #0084b4;
+  text-shadow: 2px 2px 8px #55bfff;
 }
