@@ -1,5 +1,5 @@
 <!-- START SIGMA IMPORTS -->
-<!--
+
 <script src="../src/sigma.core.js"></script>
 <script src="../src/conrad.js"></script>
 <script src="../src/utils/sigma.utils.js"></script>
@@ -47,29 +47,87 @@
 <script src="../src/misc/sigma.misc.bindDOMEvents.js"></script>
 <script src="../src/misc/sigma.misc.drawHovers.js"></script>
 <script src="../lib/sigma.layout.forceAtlas2.min.js"></script>
--->
+
 <div id="wrapper">
 <!-- A placeholder for the graph -->
+
 <div id="container">
+
+ 
+          
   <style>
     #graph-container {
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      position: absolute;
+         
+      
+      position: relative;
+      width: 1000px;
+      height: 600px;
+      border: 5px solid #73AD21;
+      margin: 0 auto;
+      margin-top: 100px;
     }
   </style>
-  <div id="graph-container"></div>
+ 
+  <div id="graph-container">
+  <h7>Influencia</h7>
+    <div id="leyenda">
+    <style>
+      #leyenda {
+         
+      
+      position: absolute;
+      bottom: 0px; 
+      right: 0px;
+      width: 150px;
+      height: 200px;
+      border: 1px solid #73AD21;
+      background-color: #D4EFDF
+    
+      }
+    </style>
+    <h6>Leyenda</h6>
+    <table>
+    <tr>
+    <th><figure class="circle_red"></figure></th>
+    <td><p6>Conglomerado</p6></td>
+    </tr>
+    <tr>
+    <th><figure class="circle_green"></figure></th>
+    <td><p6>Partido</p6></td>
+    </tr>
+    <tr>
+    <th><figure class="circle_blue"></figure></th>
+    <td><p6>Político</p6></td>
+    </tr>
+    <tr>
+    <th><figure class="circle_yellow"></figure></th>
+    <td><p6>Tweetero</p6></td>
+    </tr>
+    </table>
+  </div>
+  </div>
+
 </div>
 
 <script type="application/javascript">
+sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+    var k,
+        neighbors = {},
+        index = this.allNeighborsIndex[nodeId] || {};
+
+    for (k in index)
+      neighbors[k] = this.nodesIndex[k];
+
+    return neighbors;
+  });
 
   sigma.neo4j.cypher(
     {url: 'http://107.170.99.162:7474', user: 'neo4j', password: 'DigitalOceanServer'},
     "match p=(b)-[r:Tweet]->(a) where size((b)-[:Tweet]->()) > 1 return p,labels(a)",
     {container: 'graph-container'},
-    function(s){
+     function(s){
+
+
       s.settings({
           edgeColor: 'default',
           defaultEdgeColor: '#6f6f73'
@@ -85,17 +143,60 @@
               node.color = '#1360b3';
               node.size = 8;
           }else{
-              node.color = '#aaae2a';
+              node.color = '#ffff00';
               node.size = 2;
           }
         node.label = node.neo4j_data.nombre;
-      })
+
+      });
+      s.graph.nodes().forEach(function(n) {
+        n.originalColor = n.color;
+      });
+      s.graph.edges().forEach(function(e) {
+        e.originalColor = e.color;
+      });
+
+      s.bind('clickNode', function(e) {
+        var nodeId = e.data.node.id,
+            toKeep = s.graph.neighbors(nodeId);
+        toKeep[nodeId] = e.data.node;
+
+        s.graph.nodes().forEach(function(n) {
+          if (toKeep[n.id])
+            n.color = n.originalColor;
+          else
+            n.color = '#eee';
+        });
+
+        s.graph.edges().forEach(function(e) {
+          if (toKeep[e.source] && toKeep[e.target])
+            e.color = e.originalColor;
+          else
+            e.color = '#eee';
+        });
+        s.refresh();
+      });
+
+      s.bind('clickStage', function(e) {
+        s.graph.nodes().forEach(function(n) {
+          n.color = n.originalColor;
+        });
+
+        s.graph.edges().forEach(function(e) {
+          e.color = e.originalColor;
+        });
+
+        // Same as in the previous event:
+        s.refresh();
+      });
       s.startForceAtlas2({worker: true, barnesHutOptimize: false});
       s.refresh();
     }
   );
 </script>
+  
 </div>
+
 <!-- The most basic usage of the Sigma JSON parser -->
 <!--
 <script>
