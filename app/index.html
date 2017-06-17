@@ -31,7 +31,7 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-app="poliTweets" ng-controller="loginCtrl">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-app="poliTweets" ng-controller="mainCtrl">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -40,7 +40,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top" du-smooth-scroll duration="2000">
+                <a class="navbar-brand page-scroll" href="#page-top" ng-click="toHome()" du-smooth-scroll duration="2000">
                     <i class="fa fa-twitter fa-fw"></i> <span class="light">PoliTweets</span>
                 </a>
             </div>
@@ -53,16 +53,16 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#home/#conglomerados" du-smooth-scroll duration="2000">Conglomerados</a>
+                        <a class="page-scroll" href="#conglomerados" du-smooth-scroll duration="2000">Conglomerados</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#/home/#partidos" du-smooth-scroll duration="2000">Partidos</a>
+                        <a class="page-scroll" href="#partidos" du-smooth-scroll duration="2000">Partidos</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#/home/#politicos" du-smooth-scroll duration="2000">Politicos</a>
+                        <a class="page-scroll" href="#politicos" du-smooth-scroll duration="2000">Politicos</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#/home/#influencias" du-smooth-scroll duration="2000">Influencia</a>
+                        <a class="page-scroll" href="#influencias" du-smooth-scroll duration="2000">Influencia</a>
                     </li>
                     <a href="#page-top" class="btn-poli btn-lg">Admin</a>
                 </ul>
