@@ -125,7 +125,7 @@ a:focus {
   text-align: center;
   color: white;
   background: url(../img/politweets-background.png) no-repeat center center scroll;
-  background-color: black;
+  background-color: white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -226,7 +226,7 @@ a:focus {
   padding: 50px 0;
   color: white;
   background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
-  background-color: black;
+  background-color: white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -458,7 +458,7 @@ body {
 }
 
 #login-dp .help-block{
-  font-size:12px    
+  font-size:12px
 }
 
 #login-dp .bottom{
