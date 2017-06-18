@@ -106,7 +106,7 @@ a:focus {
     padding: 20px 0;
     border-bottom: none;
     letter-spacing: 1px;
-    background: transparent;
+    background: rgba(0, 132, 180, 0.7);
     -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
     -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
     transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
@@ -124,7 +124,7 @@ a:focus {
   padding: 100px 0;
   text-align: center;
   color: white;
-  background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+  background: url(../img/politweets-background.png) no-repeat center center scroll;
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -410,7 +410,7 @@ body {
 
 /* Sidebar navigation */
 .nav-sidebar {
-  margin-right: -21px; 
+  margin-right: -21px;
   margin-bottom: 20px;
   margin-left: -20px;
 }
@@ -458,7 +458,7 @@ body {
 }
 
 #login-dp .help-block{
-    font-size:12px    
+    font-size:12px
 }
 
 #login-dp .bottom{
