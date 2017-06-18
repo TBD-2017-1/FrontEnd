@@ -12,50 +12,21 @@
 
   <!-- MAIN -->
   <div class="col-sm-8 col-sm-offset-2 col-md-9 col-md-offset-2 admin-main">
-    <div class="row"> 
+    <div class="row">
       <div class="col-sm-4"><h2> Conglomerados </h2></div>
-      <div class="col-sm-2"> 
+      <div class="col-sm-2">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Agregar">Agregar Nuevo</button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="AgregarLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Conglomerados</h4>
-              </div>
-              <div class="modal-body">
-                <form ng-submit="crearConglomerado()">
-                  <div class="form-group">
-                    <label for="InputName">Nombre</label>
-                    <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="newConglomerado.nombre">
-                  </div>
-                  <div class="form-group">
-                    <label for="TweeterAccount">Cuenta de Tweeter</label>
-                    <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="newConglomerado.cuentaTwitter">
-                  </div>                 
-                </form>
-               
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" ng-click="crearConglomerado(newConglomerado)">Agregar</button>
-              </div>
-            </div>
-          </div>
-        </div> <!-- END Modal -->
       </div>
     </div>
-    
+
     <div class="row"><form>
       <div class="form-group col-sm-6">
         <label for="SelectConglomerado">Seleccione un conglomerado:</label>
         <select id="selectConglomerado" class="form-control" ng-model="selectConglomerado" ng-options="y.nombre for y in conglomerados.data | orderBy: '-id'" ng-click="setConglomerado(selectConglomerado)">
       </select>
       </div>
-      
+
     </form></div>
 
     <div ng-if="selectConglomerado"><div class="well" >
@@ -93,7 +64,7 @@
       <form class="form-inline">
         <div class="form-group">
           <label for="exampleInputName2">Agregar: </label>
-          <input type="text" class="form-control input-sm"" id="keyword" placeholder="Keyword" ng-model="newKeywordCong.value">
+          <input type="text" class="form-control input-sm" id="keyword" placeholder="Keyword" ng-model="newKeywordCong.value">
         </div>
         <button type="submit" class="btn btn-success btn-sm" ng-click="agregarKeywordConglomerado(newKeywordCong)">Agregar</button>
       </form>
@@ -105,57 +76,86 @@
 
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="Borrar" tabindex="-1" role="dialog" aria-labelledby="Borrar">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="Borrar">Borrar elemento!</h4>
-          </div>
-          <div class="modal-body">
-            ¿Está seguro que desea eliminar este elemento?
+  </div> <!-- END MAIN -->
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-danger" ng-click="borrarConglomerado(ConglomeradoSeleccionado)">Borrar</button>
-          </div>
+  <!-- Modal AGREGAR -->
+  <div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="AgregarLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Agregar Conglomerados</h4>
+        </div>
+        <div class="modal-body">
+          <form ng-submit="crearConglomerado()">
+            <div class="form-group">
+              <label for="InputName">Nombre</label>
+              <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="newConglomerado.nombre">
+            </div>
+            <div class="form-group">
+              <label for="TweeterAccount">Cuenta de Tweeter</label>
+              <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="newConglomerado.cuentaTwitter">
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" ng-click="crearConglomerado(newConglomerado)">Agregar</button>
         </div>
       </div>
     </div>
+  </div> <!-- END Modal -->
 
-    <!-- Modal EDITAR -->
-    <div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="Editar">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Editar Conglomerado</h4>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="InputName">Nombre</label>
-                <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="conglomeradoSeleccionado.nombre">
-              </div>
-              <div class="form-group">
-                <label for="TweeterAccount">Cuenta de Tweeter</label>
-                <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="conglomeradoSeleccionado.cuentaTwitter">
-              </div>
-              
-            </form>
+  <!-- Modal EDITAR -->
+  <div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="Editar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Editar Conglomerado</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="InputName">Nombre</label>
+              <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="conglomeradoSeleccionado.nombre">
+            </div>
+            <div class="form-group">
+              <label for="TweeterAccount">Cuenta de Tweeter</label>
+              <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="conglomeradoSeleccionado.cuentaTwitter">
+            </div>
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" ng-click="editarConglomerado(conglomeradoSeleccionado)">Editar</button>
-          </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" ng-click="editarConglomerado(conglomeradoSeleccionado)">Editar</button>
         </div>
       </div>
-    </div> <!-- END Modal -->
-    
-  </div> <!-- END MAIN -->
+    </div>
+  </div> <!-- END Modal -->
+
+  <!-- Modal BORRAR-->
+  <div class="modal fade" id="Borrar" tabindex="-1" role="dialog" aria-labelledby="Borrar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="Borrar">Borrar elemento!</h4>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea eliminar este elemento?
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger" ng-click="borrarConglomerado(ConglomeradoSeleccionado)">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- END Modal BORRAR-->
 
 </div>
 </div>

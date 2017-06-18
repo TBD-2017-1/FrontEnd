@@ -451,52 +451,73 @@ body {
 }
 
 #login-dp{
-    min-width: 250px;
-    padding: 14px 14px 0;
-    overflow:hidden;
-    background-color:rgba(255,255,255,.8);
+  min-width: 250px;
+  padding: 14px 14px 0;
+  overflow:hidden;
+  background-color:rgba(255,255,255,.8);
 }
 
 #login-dp .help-block{
+<<<<<<< HEAD
     font-size:12px
+=======
+  font-size:12px    
+>>>>>>> ef7d0dcd0b503c605c076cf85fb37e9338a59343
 }
 
 #login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
-    border-top:1px solid #ddd;
-    clear:both;
-    padding:14px;
+  background-color:rgba(255,255,255,.8);
+  border-top:1px solid #ddd;
+  clear:both;
+  padding:14px;
 }
 
 #login-dp .form-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 @media(max-width:768px){
     #login-dp{
-        background-color: inherit;
-        color: #fff;
+      background-color: inherit;
+      color: #fff;
     }
     #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
+      background-color: inherit;
+      border-top:0 none;
     }
 }
- .lgn{
-  color: #3B4044;
- }
 
- .btn-lgn{
-  background-color: #3B4044;
-  border-color: #3B4044;
- }
+.lgn{
+	color: #3B4044;
+}
+
+.btn-lgn{
+	background-color: #3B4044;
+	border-color: #3B4044;
+}
 
 .btn-lgn:hover {
-    color: #fff;
-    background-color: #6F7376;
-    border-color: #6F7376;
+	color: #fff;
+	background-color: #6F7376;
+	border-color: #6F7376;
 }
 
 .well{
   color: #6F7376;
+}
+
+.modal{
+	color: #6F7376;
+}
+
+.btn-default{
+	color: #fff;
+	background-color: #3B4044;
+	border-color: #3B4044;
+}
+
+.btn-default:hover {
+	color: #fff;
+	background-color: #6F7376;
+	border-color: #6F7376;
 }
