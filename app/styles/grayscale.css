@@ -363,3 +363,140 @@ body {
   color: initial;
   text-shadow: 0px 0px 0px black;
 }
+.main{
+  width: 60%;
+  padding:10px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+
+.content{
+  text-align: left;
+}
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar{
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    color: #fff;
+    position: fixed;
+    top: 100px;
+    bottom: 0;
+    left: 0;
+/*    z-index: 1000;*/
+    display: block;
+    padding: 20px;
+    padding-top: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #3B4044;
+    border-right: 1px solid none;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; 
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+
+.nav-sidebar > li > a {
+  color: #fff;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.nav-sidebar > li > a:hover {
+  color: #3B4044;
+}
+
+.nav-sidebar > .active > a {
+  color: #fff;
+  background-color: #6F7376;
+}
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus{
+  color: #3B4044;
+}
+
+.admin-main{
+  padding-top: 30px;
+  padding-left: 30px;
+  color: #3B4044 ;
+  background-color: #fff;
+  margin-top: 100px;
+  padding-left: 20px;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  display: block;
+  position: fixed;
+  top: 0px;
+  right: : 0px;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+
+#login-dp .help-block{
+    font-size:12px    
+}
+
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+ .lgn{
+  color: #3B4044;
+ }
+
+ .btn-lgn{
+  background-color: #3B4044;
+  border-color: #3B4044;
+ }
+
+.btn-lgn:hover {
+    color: #fff;
+    background-color: #6F7376;
+    border-color: #6F7376;
+}
+
+.well{
+  color: #6F7376;
+}
