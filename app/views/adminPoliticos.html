@@ -18,47 +18,7 @@
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Agregar">Agregar Nuevo</button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="AgregarLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Político</h4>
-              </div>
-              <div class="modal-body">
-                <form ng-submit="crearPolitico()">
-                  <div class="form-group">
-                    <label for="InputName">Nombre</label>
-                    <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="newPolitico.nombre">
-                  </div>
-                  <div class="form-group">
-                    <label for="InputName">Apellido</label>
-                    <input type="name" class="form-control" id="InputLastName" placeholder="Apellido" ng-model="newPolitico.apellido">
-                   </div>
-                  <div class="form-group">
-                    <label for="Partido">Partido Político</label>
-                    <select class="form-control" ng-model="newPolitico.partido" ng-options="y.nombre for y in partidos.data">                  
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="Conglomerado">Conglomerado</label>
-                    <select class="form-control" ng-model="newPolitico.conglomerado" ng-options="y.nombre for y in conglomerados.data">
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="TweeterAccount">Cuenta de Tweeter</label>
-                    <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="newPolitico.cuentaTwitter">
-                  </div>                 
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" ng-click="crearPolitico(newPolitico)">Agregar</button>
-              </div>
-            </div>
-          </div>
-        </div> <!-- END Modal -->
+        
       </div>
     </div>
     
@@ -136,73 +96,115 @@
 
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="Borrar" tabindex="-1" role="dialog" aria-labelledby="Borrar">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="Borrar">Borrar elemento!</h4>
-          </div>
-          <div class="modal-body">
-            ¿Está seguro que desea eliminar este elemento?
+  </div> <!-- END MAIN -->
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-danger" ng-click="borrarPolitico(politicoSeleccionado)">Borrar</button>
-          </div>
+  <!-- Modal AGREGAR-->
+  <div class="modal fade" id="Agregar" tabindex="-1" role="dialog" aria-labelledby="AgregarLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Agregar Político</h4>
+        </div>
+        <div class="modal-body">
+          <form ng-submit="crearPolitico()">
+            <div class="form-group">
+              <label for="InputName">Nombre</label>
+              <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="newPolitico.nombre">
+            </div>
+            <div class="form-group">
+              <label for="InputName">Apellido</label>
+              <input type="name" class="form-control" id="InputLastName" placeholder="Apellido" ng-model="newPolitico.apellido">
+             </div>
+            <div class="form-group">
+              <label for="Partido">Partido Político</label>
+              <select class="form-control" ng-model="newPolitico.partido" ng-options="y.nombre for y in partidos.data">                  
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="Conglomerado">Conglomerado</label>
+              <select class="form-control" ng-model="newPolitico.conglomerado" ng-options="y.nombre for y in conglomerados.data">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="TweeterAccount">Cuenta de Tweeter</label>
+              <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="newPolitico.cuentaTwitter">
+            </div>                 
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" ng-click="crearPolitico(newPolitico)">Agregar</button>
         </div>
       </div>
     </div>
+  </div> <!-- END Modal -->
 
-    <!-- Modal EDITAR -->
-    <div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="Editar">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Editar Político</h4>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="InputName">Nombre</label>
-                <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="politicoSeleccionado.nombre">
-              </div>
-              <div class="form-group">
-                <label for="InputName">Apellido</label>
-                <input type="name" class="form-control" id="InputLastName" placeholder="Apellido" ng-model="politicoSeleccionado.apellido">
-              </div>
-              <div class="form-group">
-                <label for="Partido">Partido Político</label>
-                <select class="form-control" ng-model="politicoSeleccionado.partido" ng-options="partido.nombre for partido in partidos.data">
-                  <option value="" disabled> {{selectPolitico.partido.nombre}} </option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="Conglomerado">Conglomerado</label>
-                <select class="form-control" ng-model="politicoSeleccionado.conglomerado" ng-options="conglomerado.nombre for conglomerado in conglomerados.data">
-                <option value="" disabled> {{selectPolitico.conglomerado.nombre}} </option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="TweeterAccount">Cuenta de Tweeter</label>
-                <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="politicoSeleccionado.cuentaTwitter">
-              </div>
-              
-            </form>
+  <!-- Modal EDITAR -->
+  <div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="Editar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Editar Político</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="InputName">Nombre</label>
+              <input type="name" class="form-control" id="InputName" placeholder="Nombre" ng-model="politicoSeleccionado.nombre">
+            </div>
+            <div class="form-group">
+              <label for="InputName">Apellido</label>
+              <input type="name" class="form-control" id="InputLastName" placeholder="Apellido" ng-model="politicoSeleccionado.apellido">
+            </div>
+            <div class="form-group">
+              <label for="Partido">Partido Político</label>
+              <select class="form-control" ng-model="politicoSeleccionado.partido" ng-options="partido.nombre for partido in partidos.data">
+                <option value="" disabled> {{selectPolitico.partido.nombre}} </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="Conglomerado">Conglomerado</label>
+              <select class="form-control" ng-model="politicoSeleccionado.conglomerado" ng-options="conglomerado.nombre for conglomerado in conglomerados.data">
+              <option value="" disabled> {{selectPolitico.conglomerado.nombre}} </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="TweeterAccount">Cuenta de Tweeter</label>
+              <input type="taccount" class="form-control" id="TweeterAccount" placeholder="ejemplo" ng-model="politicoSeleccionado.cuentaTwitter">
+            </div>
+            
+          </form>
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" ng-click="editarPolitico(politicoSeleccionado)">Editar</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" ng-click="editarPolitico(politicoSeleccionado)">Editar</button>
         </div>
       </div>
-    </div> <!-- END Modal -->
-    
-  </div> <!-- END MAIN -->
+    </div>
+  </div> <!-- END Modal -->
+
+  <!-- Modal BORRAR-->
+  <div class="modal fade" id="Borrar" tabindex="-1" role="dialog" aria-labelledby="Borrar">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="Borrar">Borrar elemento!</h4>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea eliminar este elemento?
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger" ng-click="borrarPolitico(politicoSeleccionado)">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- END Modal BORRAR-->
 
 </div>
 </div>
