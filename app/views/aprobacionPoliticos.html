@@ -1,26 +1,54 @@
-
-
-  <div id="wrapper">
-      <div class="col-mid-12 main">
-        
-        <div class="row"><form>
-          <div class="form-group col-sm-6">
-            <label for="SelectPolitico">Seleccione un político:</label>
-            <select id="selectPolitico" class="form-control" ng-model="selectPolitico" ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '-id'" ng-click="setPolitico(selectPolitico)">
-          </select>
-          </div>
-        </form></div>
-        
-        <div class="row content">
-          <h1>Políticos</h1>
-          <h2>Percepción Ciudadana el dia de ayer:</h2>
-
-          <div id="chart1" ></div>
-
-          <h2>Aprobación a través del tiempo:</h2>
-          <div id="chart2" ></div>
-
+<div id="wrapper">
+  <!-- Intro Header -->
+  <header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading title-text-poli">Aprobación Políticos</h1>
+                    <p class="intro-text title-text-poli">Percepción de las usuarios hacia personajes políticos
+                      <br></br>
+                    <a href="#section" class="btn btn-circle page-scroll" du-smooth-scroll duration="2000">
+                        <i class="fa fa-angle-double-down animated"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
+  </header>
 
+  <div id="section" class="content-section-poli">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <form>
+          <div class="col-lg-3">
+            <label for="SelectPolitico">Seleccione un político:</label>
+          </div>
+          <div class="col-lg-6">
+            <select id="selectPolitico" class="form-control" ng-model="selectPolitico" ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '-id'" ng-click="setPolitico(selectPolitico)"></select>
+          </div>
+          <div class="col-lg-3">
+            <button class="btn-poli btn-lg">Agregar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div class="row text-center">
+      <!-- Acá nombres de políticos seleccionados -->
+    </div>
+    <br>
+    <div class="row text-center">
+      <a href="#section-graphics" class="btn-poli btn-lg" du-smooth-scroll duration="2000">Generar Gráficos</a>
+    </div>
+  </div>
+  <div id="section-graphics" class="content-section-poli">
+    <div class="row text-center">
+      <h1>Políticos</h1>
+      <h2>Percepción Ciudadana el dia de ayer:</h2>
+      <div id="chart1" ></div>
+      <h2>Aprobación a través del tiempo:</h2>
+      <div id="chart2" ></div>
+    </div>
+  </div>
+</div>

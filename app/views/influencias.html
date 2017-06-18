@@ -46,19 +46,34 @@
 <script src="../src/misc/sigma.misc.bindEvents.js"></script>
 <script src="../src/misc/sigma.misc.bindDOMEvents.js"></script>
 <script src="../src/misc/sigma.misc.drawHovers.js"></script>
-<script src="../lib/sigma.layout.forceAtlas2.min.js"></script>
+<script src="../lib/sigma.la  yout.forceAtlas2.min.js"></script>
 
 <div id="wrapper">
+
+<!-- Intro Header -->
+<header class="intro">
+  <div class="intro-body">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                  <h1 class="brand-heading title-text-poli">Influencias</h1>
+                  <p class="intro-text title-text-poli">Redes sociales de usuarios y entidades
+                    <br></br>
+                  <a href="#container" class="btn btn-circle page-scroll" du-smooth-scroll duration="2000">
+                      <i class="fa fa-angle-double-down animated"></i>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
 <!-- A placeholder for the graph -->
 
 <div id="container">
-
- 
-          
   <style>
     #graph-container {
-         
-      
+
+
       position: relative;
       width: 1000px;
       height: 600px;
@@ -67,22 +82,19 @@
       margin-top: 100px;
     }
   </style>
- 
+
   <div id="graph-container">
   <h7>Influencia</h7>
     <div id="leyenda">
     <style>
       #leyenda {
-         
-      
       position: absolute;
-      bottom: 0px; 
+      bottom: 0px;
       right: 0px;
       width: 150px;
       height: 200px;
       border: 1px solid #73AD21;
       background-color: #D4EFDF
-    
       }
     </style>
     <h6>Leyenda</h6>
@@ -194,38 +206,5 @@ sigma.classes.graph.addMethod('neighbors', function(nodeId) {
     }
   );
 </script>
-  
-</div>
 
-<!-- The most basic usage of the Sigma JSON parser -->
-<!--
-<script>
-function getParameterByName(name) {
-  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-};
-sigma.parsers.json( "/data/geolocalized.json",
-  {container: 'network-graph'},
-  function(s) { //This function is passed an instance of Sigma s
-    nodeId = parseInt(getParameterByName('node_id'));
-    var selectedNode;
-    s.graph.nodes().forEach(function(node, i, a) {
-      if (node.id == nodeId) {
-        selectedNode = node;
-        return;
-      }
-    });
-    //Initialize nodes as a circle
-    s.graph.nodes().forEach(function(node, i, a) {
-      node.x = Math.cos(Math.PI * 2 * i / a.length);
-      node.y = Math.sin(Math.PI * 2 * i / a.length);
-    });
-    //Call refresh to render the new graph
-    s.refresh();
-    s.startForceAtlas2();
-    if (selectedNode != undefined){
-      s.cameras[0].goTo({x:selectedNode['read_cam0:x'],y:selectedNode['read_cam0:y'],ratio:0.1});
-    }
-  });
-</script>
--->
+</div>

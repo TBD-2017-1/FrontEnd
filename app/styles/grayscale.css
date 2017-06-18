@@ -316,6 +316,9 @@ body {
 }
 
 /* Custom Changes*/
+#wrapper{
+  width: 100%;
+}
 .btn-poli{
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -355,4 +358,8 @@ body {
   height: 50%;
   color: #0084b4;
   text-shadow: 2px 2px 8px #55bfff;
+}
+.chart-poli{
+  color: initial;
+  text-shadow: 0px 0px 0px black;
 }
