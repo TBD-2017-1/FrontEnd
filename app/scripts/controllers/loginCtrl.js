@@ -2,7 +2,9 @@ angular.module('poliTweets')
 	.controller('loginCtrl', function($location, $scope, loginService,$cookies){
 		$scope.username = $cookies.get('sesion');
 
-			$scope.login = function(){
+			$scope.login = function(user,pass){
+				$scope.usuario=user;
+				$scope.contrasena=pass;
 				loginService.getUsuario($scope.usuario,$scope.contrasena).then(function(data){
 					}, function(error){
 						$scope.respuesta = error.status;

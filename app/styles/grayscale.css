@@ -167,7 +167,8 @@ a:focus {
   padding: 100px 0;
   text-align: center;
   color: white;
-  background: url(../img/politweets-background.png) no-repeat center center scroll;
+  background: url(../img/banner.png) no-repeat center center scroll;
+  background-size: 932px 493px;
   background-color: white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -389,7 +390,7 @@ body {
   background-color: white;
 }
 .background-poli{
-  background-image:url('../img/chart.png');
+  background-image:url('../img/chart2 .png');
   background-repeat: no-repeat;
   background-position: bottom;
 }
@@ -437,7 +438,7 @@ body {
   .sidebar {
     color: #fff;
     position: fixed;
-    top: 100px;
+    top: 90px;
     bottom: 0;
     left: 0;
 /*    z-index: 1000;*/
@@ -482,7 +483,7 @@ body {
   padding-left: 30px;
   color: #3B4044 ;
   background-color: #fff;
-  margin-top: 100px;
+  margin-top: 90px;
   padding-left: 20px;
   bottom: 0;
   overflow-x: hidden;
