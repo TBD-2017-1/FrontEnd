@@ -389,9 +389,9 @@ body {
   background-color: white;
 }
 .background-poli{
-  background-image:url('../img/confidencial.jpg');
+  background-image:url('../img/chart.png');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
 }
 .title-text-poli{
   color: #0084b4;
