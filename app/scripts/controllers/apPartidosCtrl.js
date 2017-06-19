@@ -11,9 +11,12 @@ angular.module('poliTweets')
 		// arreglos de valores para el grafico chart1
 		$scope.names= [];                             // elementos eje y del grafico (participantes)
 		$scope.aprob= ['Aprobacion'];                 // aprobación actual de cada participante
-		$scope.tasa_pos=['Tasa Positiva'];            // tasa de aprecioaciones positivas actuales
-		$scope.tasa_neu=['Tasa Neutral'];             // tasa de aprecioaciones neutrales actuales
-		$scope.tasa_neg=['Tasa Negativa'];            // tasa de aprecioaciones negativas actuales
+		$scope.tasa_pos=[];            // tasa de aprecioaciones positivas actuales
+		$scope.tasa_neu=[];             // tasa de aprecioaciones neutrales actuales
+		$scope.tasa_neg=[];            // tasa de aprecioaciones negativas actuales
+		$scope.tPos= ['Tasa Positiva'];
+		$scope.tNeu= ['Tasa Neutral'];
+		$scope.tNeg= ['Tasa Negativa'];
 
 		// arreglos de valores para el grafico chart2
 		$scope.dates=[];               // elementos eje x del grafico (fechas)
@@ -46,7 +49,7 @@ angular.module('poliTweets')
 								$scope.procesarNeut();
 
 								$scope.showGraphA();
-								$scope.showpieGraphA();
+								$scope.showPieGraphA();
 								$scope.showGraphB();
 
 							}, function(error){
@@ -78,7 +81,7 @@ angular.module('poliTweets')
 			var name_ID_aux = $scope.timeline_data[0].partido.id;	// id pivote
 			var j = 0;
 
-			for (j in $scope.timeline_data) {                								// buscar cada entidad en el JSON
+			while (j < $scope.timeline_data.length) {                								// buscar cada entidad en el JSON
 
 				var first_name = $scope.timeline_data[j].partido.nombre;
 
@@ -95,6 +98,7 @@ angular.module('poliTweets')
 				var elem_aux= [];
 				elem_aux[0] = first_name ;
 				$scope.columns_data[j]= elem_aux;
+				j += 1;
 			}
 
 			// se cargan los elementos del eje x para el grafico chart2
@@ -165,6 +169,7 @@ angular.module('poliTweets')
 
 			  i += 1;
 			}
+			$scope.tPos.push($scope.tasa_pos[i-1]);
 		}
 
 		$scope.procesarNega = function(){
@@ -189,6 +194,7 @@ angular.module('poliTweets')
 
 			  i += 1;
 			}
+			$scope.tNeg.push($scope.tasa_neg[i-1]);
 		}
 
 		$scope.procesarNeut = function(){
@@ -213,6 +219,7 @@ angular.module('poliTweets')
 
 			  i += 1;
 			}
+			$scope.tNeu.push($scope.tasa_neu[i-1]);
 		}
 
 
@@ -228,6 +235,7 @@ angular.module('poliTweets')
           $scope.aprob
           ],
           type: 'bar',
+          onmouseover: function (d) { $scope.updatePieGraphA(d.index); console.log(d.index);},
         },
         axis: {
           x: {
@@ -257,15 +265,18 @@ angular.module('poliTweets')
     }
 
 
-    $scope.showpieGraphA = function(){
+    $scope.showPieGraphA = function(){
 			$scope.partiPieChartA = c3.generate({
-	    	bindto: '#chart1-b',
+	    	bindto: '#partiChart1-b',
+	    	title: {
+				  text: 'Valoraciones Registradas',
+				},
 	    	data: {
 		      // iris data from R
 		      columns: [
-	        $scope.tasa_neu,
-	        $scope.tasa_pos,
-	        $scope.tasa_neg
+	        $scope.tNeu,
+	        $scope.tPos,
+	        $scope.tNeg
 		      ],
 		      type : 'pie',
 		      //onclick: function (d, i) { console.log("onclick", d, i); },
@@ -273,21 +284,29 @@ angular.module('poliTweets')
 		      //onmouseout: function (d, i) { console.log("onmouseout", d, i); }
 		    },
 		    color: {
-		        pattern: ['#848f94', '#5fa752', '#d51c2a']
+		      pattern: ['#848f94', '#5fa752', '#d51c2a']
 		    }
 			});
 		}
 
-    $scope.updateGraphA = function(){
-    	$scope.chartA.load({
+    $scope.updatePieGraphA = function(index){
+
+  		$scope.tNeu[1] = $scope.tasa_neu[index];
+      $scope.tPos[1] = $scope.tasa_pos[index];
+      $scope.tNeg[1] = $scope.tasa_neg[index];
+
+    	$scope.partiPieChartA.load({
+    		/*
+    		title: {
+				  text: $scope.entidad,
+				},
+				*/
         columns: [
-        $scope.tasa_neu,
-        $scope.tasa_pos,
-        $scope.tasa_neg
+        	$scope.tNeu,
+	        $scope.tPos,
+	        $scope.tNeg,
         ]
       });
-
-      $scope.chartA.groups([['Tasa Negativa', 'Tasa Positiva', 'Tasa Neutral' ]]);
 		}
 
     $scope.showGraphB = function() {
@@ -302,8 +321,6 @@ angular.module('poliTweets')
 		    },
         data: {
           columns: $scope.columns_data,
-          
-		      onclick: function (d) { console.log(d); },
         },
         axis: {
           y: {
@@ -326,7 +343,5 @@ angular.module('poliTweets')
         }
       });
     }
-
-		//$timeout($scope.updateGraphA, 3000);
 
 });
