@@ -17,38 +17,55 @@
     </div>
   </header>
 
-  <div id="section" class="content-section-poli">
-    <div class="row">
-      <div class="col-lg-12 text-center">
+  <div id="section">
+    <div class="col-sm-10" align="center">
+
+      <h1>Políticos</h1>
+
+      <div class="row">
         <form>
-          <div class="col-lg-3">
-            <label for="SelectPolitico">Seleccione un político:</label>
+          <div class="form-group col-sm-6">
+            <label for="selectPartido">Listar por Partido:</label>
+            <select id="selectPartido" class="form-control" ng-model="selectPartido"
+              ng-options="(y.nombre) for (x,y) in partidos.data | orderBy: '+nombre'"
+              ng-click="setPolitico(selectPartido); empty=false">
+            </select>
           </div>
-          <div class="col-lg-6">
-            <select id="selectPolitico" class="form-control" ng-model="selectPolitico" ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '-id'" ng-click="setPolitico(selectPolitico)"></select>
-          </div>
-          <div class="col-lg-3">
-            <button class="btn-poli btn-lg">Agregar</button>
+        </form>
+        <form>
+          <div class="form-group col-sm-6">
+            <label for="selectPolitico">Añadir por Político:</label>
+            <select id="selectPolitico" class="form-control" ng-model="selectPolitico"
+              ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '+nombre'"
+              ng-click="setPolitico(selectPolitico); empty=false">
+            </select>
           </div>
         </form>
       </div>
+      
+      <div ng-if="selectPolitico || selectPartido" class="row">
+        <div class="well col-sm-12">
+          <h2>Percepción Ciudadana el dia de ayer:</h2>
+
+          <div class="col-sm-8">
+            <div id="chart1" ></div>
+          </div>
+
+          <div class="col-sm-4">
+            <div id="chart1-b" ></div>
+          </div>
+        </div>
+
+        <div class="well col-sm-12">
+          <h2>Aprobación a través del tiempo:</h2>
+
+          <div class="col-sm-12">
+            <div id="chart2" ></div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <br>
-    <div class="row text-center">
-      <!-- Acá nombres de políticos seleccionados -->
-    </div>
-    <br>
-    <div class="row text-center">
-      <a href="#section-graphics" class="btn-poli btn-lg" du-smooth-scroll duration="2000">Generar Gráficos</a>
-    </div>
-  </div>
-  <div id="section-graphics" class="content-section-poli">
-    <div class="row text-center">
-      <h1>Políticos</h1>
-      <h2>Percepción Ciudadana el dia de ayer:</h2>
-      <div id="chart1" ></div>
-      <h2>Aprobación a través del tiempo:</h2>
-      <div id="chart2" ></div>
-    </div>
+
   </div>
 </div>
