@@ -27,9 +27,23 @@ h7{
 p6{
   font-size: 15px;
   color: #004887;
-  font-family: 'Comic Sans MS', sans-serif;
+  font-family: 'Oswald', sans-serif;
 
 }
+
+  .boton_personalizado{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+    position:absolute;
+    bottom: 50px;
+    left: 50px;
+  }
 
 .circle_red {
   display: block;
