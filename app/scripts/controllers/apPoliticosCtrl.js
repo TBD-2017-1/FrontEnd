@@ -1,16 +1,19 @@
 angular.module('poliTweets')
-	.controller('apPoliticosCtrl', function($scope, $timeout, politicosService){
+	.controller('apPoliticosCtrl', function($scope, $timeout, politicosService, partidosService){
 	// COMBOBOX
+		$scope.partidos = [];
+		$scope.partidoSeleccionado = {};
 		$scope.politicos = [];
 		$scope.politicoSeleccionado = {};
 		$scope.setID = {};
-
+		$scope.empty = false;
 
 	// PARA GRAFICO USANDO SERVICIO
 		$scope.timeline_data = [] ;
 
-		$scope.chartA;
-		$scope.chartB;
+		$scope.poliChartA;
+		$scope.poliPieChartA;
+		$scope.poliChartB;
 
 		// arreglos de valores para el grafico chart1
 		$scope.names= [];                             // elementos eje y del grafico (participantes)
@@ -24,7 +27,21 @@ angular.module('poliTweets')
 		$scope.columns_data=[];        // historial de aprobacion de cada participante
 
 		function Politicos(){
-			$scope.setPolitico = function(politico){
+			
+			partidosService.getPartidos().then(function(data){
+				$scope.partidos = data;
+			}, function(error){
+			});
+
+			politicosService.getPoliticos().then(function(data){
+				$scope.politicos = data;
+			}, function(error){
+			});
+
+		}
+		Politicos();
+
+	$scope.setPolitico = function(politico){
 				$scope.politicoSeleccionado = politico;
 				$scope.setID = politico.id;
 				console.log($scope.setID);
@@ -55,6 +72,7 @@ angular.module('poliTweets')
 									$scope.procesarNeut();
 
 									$scope.showGraphA();
+									$scope.showpieGraphA();
 									$scope.showGraphB();
 
 								}, function(error){
@@ -78,13 +96,6 @@ angular.module('poliTweets')
 				});
 			}
 
-			politicosService.getPoliticos().then(function(data){
-				$scope.politicos = data;
-			}, function(error){
-			});
-
-		}
-		Politicos();
 
 		$scope.iniciarTimeline = function(){
 			// preparan valores iniciales para las columnas de chart2 (un arreglo por participante)
@@ -115,7 +126,10 @@ angular.module('poliTweets')
 			// se cargan los elementos del eje x para el grafico chart2
 			j= 0;
 			while (j < $scope.timeline_data.length) {                        // por cada fecha en el JSON
-				$scope.dates.push($scope.timeline_data[j].fecha);
+				var aux_fecha = $scope.timeline_data[j].fecha;
+				var formated_date = aux_fecha.slice(0, 10);
+				$scope.dates.push(formated_date);
+				//$scope.dates.push($scope.timeline_data[j].fecha);
 				j += $scope.names.length;
 			}
 		}
@@ -132,7 +146,7 @@ angular.module('poliTweets')
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
 
 					var valor;
-					valor = $scope.timeline_data[k].valor / 100;
+					valor = $scope.timeline_data[k].valor;
 			  	$scope.columns_data[i].push(valor);		// agregar info a la linea temporal de chart2
 
 					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
@@ -157,7 +171,7 @@ angular.module('poliTweets')
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
 
 					var valor;
-					valor = $scope.timeline_data[k].valor / 100;
+					valor = $scope.timeline_data[k].valor;
 
 					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
 						$scope.tasa_pos.push(valor);		// agregar tambien a chart1
@@ -181,7 +195,7 @@ angular.module('poliTweets')
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
 
 					var valor;
-					valor = $scope.timeline_data[k].valor / 100;
+					valor = $scope.timeline_data[k].valor;
 
 					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
 						$scope.tasa_neg.push(valor);		// agregar tambien a chart1
@@ -205,7 +219,7 @@ angular.module('poliTweets')
 			  while (k < cantidad_time_data) {												// por cada fecha en el JSON
 
 					var valor;
-					valor = $scope.timeline_data[k].valor / 100;
+					valor = $scope.timeline_data[k].valor;
 
 					if((k + cantidad_entidades) >= cantidad_time_data){		// si es el ultimo dato que registra la entidad
 						$scope.tasa_neu.push(valor);		// agregar tambien a chart1
@@ -220,7 +234,7 @@ angular.module('poliTweets')
 
 
 		$scope.showGraphA = function() {
-      $scope.chartA = c3.generate({
+      $scope.poliChartA = c3.generate({
 
       	bindto: '#chart1',
         data: {
@@ -228,17 +242,25 @@ angular.module('poliTweets')
           $scope.aprob
           ],
           type: 'bar',
+          order: null,
+		      onclick: function (d) { console.log(d); },
         },
         axis: {
-          x: {
-          type: 'category',
-          categories: $scope.names,
+	        x: {
+	          tick: {
+	            multiline: false,
+	        	},
+	          type: 'category',
+	          categories: $scope.names,
             label: { // ADD
               text: 'Políticos',
               position: 'outer-middle'
             }
           },
           y: {
+          	tick: {
+							values: [ 0, 20, 40, 60, 80, 100],
+	        	},
             label: { // ADD
               text: 'Porcentaje',
               position: 'outer-middle'
@@ -250,36 +272,52 @@ angular.module('poliTweets')
       });
     }
 
-    $scope.updateGraphA = function(){
-    	$scope.chartA.load({
-        columns: [
-        $scope.tasa_neu,
-        $scope.tasa_pos,
-        $scope.tasa_neg
-        ]
-      });
 
-      $scope.chartA.groups([['Tasa Negativa', 'Tasa Positiva', 'Tasa Neutral' ]]);
+		$scope.showpieGraphA = function(){
+			$scope.poliPieChartA = c3.generate({
+	    	bindto: '#chart1-b',
+	    	data: {
+		      // iris data from R
+		      columns: [
+	        $scope.tasa_neu,
+	        $scope.tasa_pos,
+	        $scope.tasa_neg
+		      ],
+		      type : 'pie',
+		      //onclick: function (d, i) { console.log("onclick", d, i); },
+		      //onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+		      //onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+		    },
+		    color: {
+		        pattern: ['#848f94', '#5fa752', '#d51c2a']
+		    }
+			});
 		}
 
     $scope.showGraphB = function() {
-    	console.log($scope.dates);
-    	console.log($scope.columns_data);
+    	//console.log($scope.dates);
+    	//console.log($scope.columns_data);
 
-      $scope.chartB = c3.generate({
+      $scope.poliChartB = c3.generate({
 
         bindto: '#chart2',
-         data: {
+        data: {
           columns: $scope.columns_data
         },
         axis: {
           y: {
+          	tick: {
+							values: [ 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+	        	},
             label: { // ADD
               text: 'Porcentaje de Aprobación',
               position: 'outer-middle'
             }
           },
-          x: {
+          x:{
+          	tick: {
+            	multiline: false,
+        		},
             type: 'category',
             categories: $scope.dates,
             label: { // ADD
@@ -290,7 +328,5 @@ angular.module('poliTweets')
         }
       });
     }
-
-		$timeout($scope.updateGraphA, 6000);
 
 });
