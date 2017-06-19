@@ -7,6 +7,7 @@ angular.module('poliTweets')
 		$scope.politicoSeleccionado = {};
 		$scope.setID = {};
 		$scope.empty = false;
+		$scope.show = false;
 
 	// PARA GRAFICO USANDO SERVICIO
 		$scope.timeline_data = [] ;
@@ -27,7 +28,7 @@ angular.module('poliTweets')
 		$scope.columns_data=[];        // historial de aprobacion de cada participante
 
 		function Politicos(){
-			
+
 			partidosService.getPartidos().then(function(data){
 				$scope.partidos = data;
 			}, function(error){
@@ -40,6 +41,10 @@ angular.module('poliTweets')
 
 		}
 		Politicos();
+
+	$scope.showAllGraphs = function(){
+		$scope.show = true;
+	}
 
 	$scope.setPolitico = function(politico){
 				$scope.politicoSeleccionado = politico;

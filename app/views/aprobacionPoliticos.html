@@ -1,48 +1,49 @@
-<div id="wrapper">
-  <!-- Intro Header -->
-  <header class="intro">
-    <div class="intro-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h1 class="brand-heading title-text-poli">Aprobación Políticos</h1>
-                    <p class="intro-text title-text-poli">Percepción de las usuarios hacia personajes políticos
-                      <br></br>
-                    <a href="#section" class="btn btn-circle page-scroll" du-smooth-scroll duration="2000">
-                        <i class="fa fa-angle-double-down animated"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-  </header>
+<!-- Intro Header -->
+<header class="intro">
+  <div class="intro-body">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                  <h1 class="brand-heading title-text-poli">Aprobación Políticos</h1>
+                  <p class="intro-text title-text-poli">Percepción de las usuarios hacia personajes políticos
+                    <br></br>
+                  <a href="#section" class="btn btn-circle page-scroll" du-smooth-scroll duration="2000">
+                      <i class="fa fa-angle-double-down animated"></i>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
 
+<div id="wrapper">
   <div id="section">
-    <div class="col-sm-10" align="center">
+    <div class="col-sm-12">
 
       <h1>Políticos</h1>
 
       <div class="row">
-        <form>
-          <div class="form-group col-sm-6">
-            <label for="selectPartido">Listar por Partido:</label>
-            <select id="selectPartido" class="form-control" ng-model="selectPartido"
-              ng-options="(y.nombre) for (x,y) in partidos.data | orderBy: '+nombre'"
-              ng-click="setPolitico(selectPartido); empty=false">
-            </select>
-          </div>
-        </form>
-        <form>
-          <div class="form-group col-sm-6">
-            <label for="selectPolitico">Añadir por Político:</label>
-            <select id="selectPolitico" class="form-control" ng-model="selectPolitico"
-              ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '+nombre'"
-              ng-click="setPolitico(selectPolitico); empty=false">
-            </select>
-          </div>
-        </form>
+        <div class="form-group col-sm-6">
+          <form>
+              <label for="selectPartido">Listar por Partido:</label>
+              <select id="selectPartido" class="form-control" ng-model="selectPartido"
+                ng-options="(y.nombre) for (x,y) in partidos.data | orderBy: '+nombre'"
+                ng-click="setPolitico(selectPartido); empty=false">
+              </select>
+          </form>
+        </div>
+        <div class="form-group col-sm-6">
+          <form>
+              <label for="selectPolitico">Añadir por Político:</label>
+              <select id="selectPolitico" class="form-control" ng-model="selectPolitico"
+                ng-options="(y.nombre + ' ' + y.apellido) for (x,y) in politicos.data | orderBy: '+nombre'"
+                ng-click="setPolitico(selectPolitico); empty=false">
+              </select>
+          </form>
+        </div>
       </div>
-      
+      <br>
+
       <div ng-if="selectPolitico || selectPartido" class="row">
         <div class="well col-sm-12">
           <h2>Percepción Ciudadana el dia de ayer:</h2>
