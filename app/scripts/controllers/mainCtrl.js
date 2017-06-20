@@ -1,6 +1,6 @@
 angular.module('poliTweets')
 		.controller('mainCtrl', function($scope, $location, politicosService, partidosService, conglomeradosService){
-
+		
 		$scope.toHome = function(){
 			$location.url('/home');
 		}
@@ -16,7 +16,6 @@ angular.module('poliTweets')
 		$scope.toInfluences = function(){
 			$location.url('/influencias');
 		}
-
 		$scope.rankPoliGraph;
 		$scope.rankPartiGraph;
 		$scope.rankCongloGraph;
@@ -34,61 +33,72 @@ angular.module('poliTweets')
 		$scope.congloValores = ['Aprobación'];
 
 
-		politicosService.getRanking().then(function(data){
-			$scope.rankPoliData = data.data.ranking;
-			for (var i=0; i < $scope.rankPoliData.length ; i++){
-				$scope.poliNombres.push($scope.rankPoliData[i].nombre);
-				$scope.poliValores.push($scope.rankPoliData[i].valor);
-			}
-			$scope.showRankingPoli();
+		$scope.loadRankingsMain = function() {
+			politicosService.getRanking().then(function(data){
+						
+				$scope.rankPoliData = data.data.ranking;
+				var i = 0;
+				
+				for ( i in $scope.rankPoliData ){
+					$scope.poliNombres.push($scope.rankPoliData[i].nombre);
+					$scope.poliValores.push($scope.rankPoliData[i].valor);
+				}
+				$scope.showRankingPoli();
+				
+				console.log($scope.rankPoliData);
 
-		}, function(error){
-			console.log(error, "error4");
-		});
-
-
-		partidosService.getRanking().then(function(data){
-			$scope.rankPartiData = data.data.ranking;
-			for (var i=0; i < $scope.rankPartiData.length ; i++){
-				$scope.partiNombres.push($scope.rankPartiData[i].nombre);
-				$scope.partiValores.push($scope.rankPartiData[i].valor);
-			}
-			$scope.showRankingParti();
-
-		}, function(error){
-			console.log(error, "error4");
-		});
+			}, function(error){
+				console.log(error, "error4");
+			});
 
 
-		conglomeradosService.getRanking().then(function(data){
-			$scope.rankCongloData = data.data.ranking;
-			for (var i=0; i < $scope.rankCongloData.length ; i++){
-				$scope.congloNombres.push($scope.rankCongloData[i].nombre);
-				$scope.congloValores.push($scope.rankCongloData[i].valor);
-			}
-			$scope.showRankingConglo();
+			partidosService.getRanking().then(function(data){
+				$scope.rankPartiData = data.data.ranking;
+				var j = 0;
+				for ( j in $scope.rankPartiData ){
+					$scope.partiNombres.push($scope.rankPartiData[j].nombre);
+					$scope.partiValores.push($scope.rankPartiData[j].valor);
+				}
+				$scope.showRankingParti();
 
-		}, function(error){
-			console.log(error, "error4");
-		});
+			}, function(error){
+				console.log(error, "error4");
+			});
 
+
+			conglomeradosService.getRanking().then(function(data){
+				$scope.rankCongloData = data.data.ranking;
+				var k = 0;
+				for ( k in $scope.rankCongloData ){
+					$scope.congloNombres.push($scope.rankCongloData[k].nombre);
+					$scope.congloValores.push($scope.rankCongloData[k].valor);
+				}
+				$scope.showRankingConglo();
+
+			}, function(error){
+				console.log(error, "error4");
+			});
+
+		}
 
 		// grafico Ranking politicos
 		$scope.showRankingPoli = function() {
       $scope.rankPoliGraph = c3.generate({
+
       	bindto: '#chartPoli',
         data: {
           columns: [
-						$scope.poliValores,
-					],
-          type: 'bar'
+          $scope.poliValores,
+          ],
+          type: 'bar',
         },
         axis: {
 	        x: {
 	          tick: {
-	            multiline: false
+	            multiline: false,
 	        	},
 	          type: 'category',
+
 	          categories: $scope.poliNombres,
             label: { // ADD
               text: 'Políticos',
@@ -96,6 +106,7 @@ angular.module('poliTweets')
             }
           },
           y: {
+          	max: 100,
           	tick: {
 							values: [ 0, 20, 40, 60, 80, 100],
 	        	},
@@ -106,6 +117,7 @@ angular.module('poliTweets')
           },
           rotated: true
         }
+
       });
     }
 
@@ -134,6 +146,7 @@ angular.module('poliTweets')
             }
           },
           y: {
+          	max: 100,
           	tick: {
 							values: [ 0, 20, 40, 60, 80, 100],
 	        	},
@@ -173,6 +186,7 @@ angular.module('poliTweets')
             }
           },
           y: {
+          	max: 100,
           	tick: {
 							values: [ 0, 20, 40, 60, 80, 100],
 	        	},
@@ -186,4 +200,5 @@ angular.module('poliTweets')
 
       });
     }
+
 });
