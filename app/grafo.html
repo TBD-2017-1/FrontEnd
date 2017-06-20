@@ -1,199 +1,109 @@
 <html>
 <head>
-	<script src="lib/sigma.min.js"></script>
-	<script src="lib/sigma.parsers.json.min.js"></script>
-	<script src="lib/sigma.neo4j.cypher.min.js"></script>
-	<script src="lib/sigma.layout.forceAtlas2.min.js"></script>
-	<script src="src/sigma.core.js"></script>
-	<script src="src/conrad.js"></script>
-	<script src="src/utils/sigma.utils.js"></script>
-	<script src="src/utils/sigma.polyfills.js"></script>
-	<script src="src/sigma.settings.js"></script>
-	<script src="src/classes/sigma.classes.dispatcher.js"></script>
-	<script src="src/classes/sigma.classes.configurable.js"></script>
-	<script src="src/classes/sigma.classes.graph.js"></script>
-	<script src="src/classes/sigma.classes.camera.js"></script>
-	<script src="src/classes/sigma.classes.quad.js"></script>
-	<script src="src/classes/sigma.classes.edgequad.js"></script>
-	<script src="src/captors/sigma.captors.mouse.js"></script>
-	<script src="src/captors/sigma.captors.touch.js"></script>
-	<script src="src/renderers/sigma.renderers.canvas.js"></script>
-	<script src="src/renderers/sigma.renderers.webgl.js"></script>
-	<script src="src/renderers/sigma.renderers.svg.js"></script>
-	<script src="src/renderers/sigma.renderers.def.js"></script>
-	<script src="src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
-	<script src="src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
-	<script src="src/renderers/webgl/sigma.webgl.edges.def.js"></script>
-	<script src="src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
-	<script src="src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.labels.def.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edges.def.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
-	<script src="src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
-	<script src="src/renderers/svg/sigma.svg.utils.js"></script>
-	<script src="src/renderers/svg/sigma.svg.nodes.def.js"></script>
-	<script src="src/renderers/svg/sigma.svg.edges.def.js"></script>
-	<script src="src/renderers/svg/sigma.svg.edges.curve.js"></script>
-	<script src="src/renderers/svg/sigma.svg.labels.def.js"></script>
-	<script src="src/renderers/svg/sigma.svg.hovers.def.js"></script>
-	<script src="src/middlewares/sigma.middlewares.rescale.js"></script>
-	<script src="src/middlewares/sigma.middlewares.copy.js"></script>
-	<script src="src/misc/sigma.misc.animation.js"></script>
-	<script src="src/misc/sigma.misc.bindEvents.js"></script>
-	<script src="src/misc/sigma.misc.bindDOMEvents.js"></script>
-	<script src="src/misc/sigma.misc.drawHovers.js"></script>
-	
-  <link href="styles/custom.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel='shortcut icon' type='image/x-icon' href='../img/favicon.jpg'>
+	<title>Grafo de Influencias</title>
+
+	<link href="styles/bootstrap.css" rel="stylesheet">
+	<link href="styles/grafo.css" rel="stylesheet">
+	<link href="styles/custom.css" rel="stylesheet">
+
 </head>
-<!-- A placeholder for the graph -->
 
-<div id="container">
+<body>
+	<br>
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<h1 class="title-text-graph">Influencia</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<button class="btn btn-info btn-lg" onclick="self.close()">Cerrar</button>
+		</div>
+	</div>
+	<div id="container">
+	  <div id="graph-container">
+	    <div id="leyenda">
+		    <h6>Leyenda</h6>
+		    <table>
+			    <tr>
+				    <th><img src="img/red_circle.png" width="30" height="30"></th>
+				    <td><p6>Conglomerado</p6></td>
+			    </tr>
+			    <tr>
+				    <th><img src="img/green_circle.png" width="25" height="25"></th>
+				    <td><p6>Partido</p6></td>
+			    </tr>
+			    <tr>
+				    <th><img src="img/blue_circle.png" width="20" height="20"></th>
+				    <td><p6>Político</p6></td>
+			    </tr>
+			    <tr>
+				    <th><img src="img/yellow_circle.png" width="10" height="10"></th>
+				    <td><p6>Tweetero</p6></td>
+			    </tr>
+		    </table>
+	  </div>
+	  </div>
+	</div>
+</body>
 
-  <style>
-    #graph-container {
-
-
-      position: relative;
-      width: 1000px;
-      height: 600px;
-      border: 5px solid #4A37C6;
-      margin: 0 auto;
-      margin-top: 100px;
-      background-color: white;
-    }
-  </style>
-<h7>Grafo de Influencias</h7>
-<a class="boton_personalizado" href="../index.html">HOME</a>
-  <div id="graph-container">
-  
-    <div id="leyenda">
-    <style>
-      #leyenda {
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
-      width: 150px;
-      height: 200px;
-      border: 1px solid #4A37C6;
-      background-color: #E2DEFC;
-      }
-    </style>
-    <h2>Leyenda</h2>
-    <table>
-    <tr>
-    <th><figure class="circle_red"></figure></th>
-    <td><p6>Conglomerado</p6></td>
-    </tr>
-    <tr>
-    <th><figure class="circle_green"></figure></th>
-    <td><p6>Partido</p6></td>
-    </tr>
-    <tr>
-    <th><figure class="circle_blue"></figure></th>
-    <td><p6>Político</p6></td>
-    </tr>
-    <tr>
-    <th><figure class="circle_yellow"></figure></th>
-    <td><p6>Tweetero</p6></td>
-    </tr>
-    </table>
-  </div>
-  </div>
-
-</div>
-
-<script type="application/javascript">
-sigma.classes.graph.addMethod('neighbors', function(nodeId) {
-    var k,
-        neighbors = {},
-        index = this.allNeighborsIndex[nodeId] || {};
-
-    for (k in index)
-      neighbors[k] = this.nodesIndex[k];
-
-    return neighbors;
-  });
-
-  sigma.neo4j.cypher(
-    {url: 'http://107.170.99.162:7474', user: 'neo4j', password: 'DigitalOceanServer'},
-    "match p=(b)-[r:Tweet]->(a) where size((b)-[:Tweet]->()) > 1 return p,labels(a)",
-    {container: 'graph-container'},
-     function(s){
-
-
-      s.settings({
-          edgeColor: 'default',
-          defaultEdgeColor: '#6f6f73'
-        });
-      s.graph.nodes().forEach(function(node){
-          if(node.neo4j_labels.indexOf("Conglomerado") > -1) {
-              node.color = '#b62d17';
-              node.size = 21;
-          }else if(node.neo4j_labels.indexOf("Partido") > -1) {
-              node.color = '#009000';
-              node.size = 13;
-          }else if(node.neo4j_labels.indexOf("Politico") > -1) {
-              node.color = '#1360b3';
-              node.size = 8;
-          }else{
-              node.color = '#ffff00';
-              node.size = 2;
-          }
-        node.label = node.neo4j_data.nombre;
-
-      });
-      s.graph.nodes().forEach(function(n) {
-        n.originalColor = n.color;
-      });
-      s.graph.edges().forEach(function(e) {
-        e.originalColor = e.color;
-      });
-
-      s.bind('clickNode', function(e) {
-        var nodeId = e.data.node.id,
-            toKeep = s.graph.neighbors(nodeId);
-        toKeep[nodeId] = e.data.node;
-
-        s.graph.nodes().forEach(function(n) {
-          if (toKeep[n.id])
-            n.color = n.originalColor;
-          else
-            n.color = '#eee';
-        });
-
-        s.graph.edges().forEach(function(e) {
-          if (toKeep[e.source] && toKeep[e.target])
-            e.color = e.originalColor;
-          else
-            e.color = '#eee';
-        });
-        s.refresh();
-      });
-
-      s.bind('clickStage', function(e) {
-        s.graph.nodes().forEach(function(n) {
-          n.color = n.originalColor;
-        });
-
-        s.graph.edges().forEach(function(e) {
-          e.color = e.originalColor;
-        });
-
-        // Same as in the previous event:
-        s.refresh();
-      });
-      s.startForceAtlas2({worker: true, barnesHutOptimize: false});
-      s.refresh();
-    }
-  );
-</script>
+<script src="lib/sigma.min.js"></script>
+<script src="lib/sigma.parsers.json.min.js"></script>
+<script src="lib/sigma.neo4j.cypher.min.js"></script>
+<script src="lib/sigma.layout.forceAtlas2.min.js"></script>
+<script src="js/grafo.js" type="application/javascript"></script>
+<!--<script src="src/sigma.core.js"></script>
+<script src="src/conrad.js"></script>
+<script src="src/utils/sigma.utils.js"></script>
+<script src="src/utils/sigma.polyfills.js"></script>
+<script src="src/sigma.settings.js"></script>
+<script src="src/classes/sigma.classes.dispatcher.js"></script>
+<script src="src/classes/sigma.classes.configurable.js"></script>
+<script src="src/classes/sigma.classes.graph.js"></script>
+<script src="src/classes/sigma.classes.camera.js"></script>
+<script src="src/classes/sigma.classes.quad.js"></script>
+<script src="src/classes/sigma.classes.edgequad.js"></script>
+<script src="src/captors/sigma.captors.mouse.js"></script>
+<script src="src/captors/sigma.captors.touch.js"></script>
+<script src="src/renderers/sigma.renderers.canvas.js"></script>
+<script src="src/renderers/sigma.renderers.webgl.js"></script>
+<script src="src/renderers/sigma.renderers.svg.js"></script>
+<script src="src/renderers/sigma.renderers.def.js"></script>
+<script src="src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+<script src="src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+<script src="src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+<script src="src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+<script src="src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+<script src="src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+<script src="src/renderers/svg/sigma.svg.utils.js"></script>
+<script src="src/renderers/svg/sigma.svg.nodes.def.js"></script>
+<script src="src/renderers/svg/sigma.svg.edges.def.js"></script>
+<script src="src/renderers/svg/sigma.svg.edges.curve.js"></script>
+<script src="src/renderers/svg/sigma.svg.labels.def.js"></script>
+<script src="src/renderers/svg/sigma.svg.hovers.def.js"></script>
+<script src="src/middlewares/sigma.middlewares.rescale.js"></script>
+<script src="src/middlewares/sigma.middlewares.copy.js"></script>
+<script src="src/misc/sigma.misc.animation.js"></script>
+<script src="src/misc/sigma.misc.bindEvents.js"></script>
+<script src="src/misc/sigma.misc.bindDOMEvents.js"></script>
+<script src="src/misc/sigma.misc.drawHovers.js"></script>-->
 
 </html>

@@ -1,6 +1,6 @@
 angular.module('poliTweets')
 		.controller('mainCtrl', function($scope, $location, politicosService, partidosService, conglomeradosService){
-		
+
 		$scope.toHome = function(){
 			$location.url('/home');
 		}
@@ -34,7 +34,7 @@ angular.module('poliTweets')
 		$scope.congloValores = ['Aprobación'];
 
 
-		politicosService.getRanking().then(function(data){
+		/*politicosService.getRanking().then(function(data){
 			poli_data = data.data;
 			$scope.rankPoliData = poli_data;
 			$scope.rankPoliData = data.data;
@@ -198,5 +198,5 @@ angular.module('poliTweets')
 
       });
     }
-
+*/
 });
