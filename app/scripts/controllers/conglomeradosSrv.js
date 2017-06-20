@@ -80,4 +80,8 @@ angular.module('poliTweets')
             return $http.get(URL3);
         };
 
+        this.getRanking = function(){
+            return $http.get('http://107.170.99.162:8080/backend/metricas/aprobacion/ranking/conglomerados')
+        };
+
     });

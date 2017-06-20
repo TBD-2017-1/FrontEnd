@@ -83,5 +83,8 @@ angular.module('poliTweets')
             return $http.get(URL1);
         };
 
+        this.getRanking = function(){
+            return $http.get('http://107.170.99.162:8080/backend/metricas/aprobacion/ranking/politicos')
+        };
 
     });

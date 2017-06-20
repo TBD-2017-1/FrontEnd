@@ -34,12 +34,9 @@ angular.module('poliTweets')
 		$scope.congloValores = ['Aprobación'];
 
 
-		/*politicosService.getRanking().then(function(data){
-			poli_data = data.data;
-			$scope.rankPoliData = poli_data;
-			$scope.rankPoliData = data.data;
-			var i = 0;
-			for ( i in $scope.rankPoliData ){
+		politicosService.getRanking().then(function(data){
+			$scope.rankPoliData = data.data.ranking;
+			for (var i=0; i < $scope.rankPoliData.length ; i++){
 				$scope.poliNombres.push($scope.rankPoliData[i].nombre);
 				$scope.poliValores.push($scope.rankPoliData[i].valor);
 			}
@@ -51,13 +48,10 @@ angular.module('poliTweets')
 
 
 		partidosService.getRanking().then(function(data){
-			parti_data = data.data;
-			$scope.rankPartiData = parti_data;
-			$scope.rankPartiData = data.data;
-			var j = 0;
-			for ( j in $scope.rankPartiData ){
-				$scope.partiNombres.push($scope.rankPartiData[j].nombre);
-				$scope.partiValores.push($scope.rankPartiData[j].valor);
+			$scope.rankPartiData = data.data.ranking;
+			for (var i=0; i < $scope.rankPartiData.length ; i++){
+				$scope.partiNombres.push($scope.rankPartiData[i].nombre);
+				$scope.partiValores.push($scope.rankPartiData[i].valor);
 			}
 			$scope.showRankingParti();
 
@@ -67,13 +61,10 @@ angular.module('poliTweets')
 
 
 		conglomeradosService.getRanking().then(function(data){
-			conglo_data = data.data;
-			$scope.rankCongloData = conglo_data;
-			$scope.rankCongloData = data.data;
-			var k = 0;
-			for ( k in $scope.rankCongloData ){
-				$scope.congloNombres.push($scope.rankCongloData[k].nombre);
-				$scope.congloValores.push($scope.rankCongloData[k].valor);
+			$scope.rankCongloData = data.data.ranking;
+			for (var i=0; i < $scope.rankCongloData.length ; i++){
+				$scope.congloNombres.push($scope.rankCongloData[i].nombre);
+				$scope.congloValores.push($scope.rankCongloData[i].valor);
 			}
 			$scope.showRankingConglo();
 
@@ -85,21 +76,19 @@ angular.module('poliTweets')
 		// grafico Ranking politicos
 		$scope.showRankingPoli = function() {
       $scope.rankPoliGraph = c3.generate({
-
       	bindto: '#chartPoli',
         data: {
           columns: [
-          $scope.poliValores,
-          ],
-          type: 'bar',
+						$scope.poliValores,
+					],
+          type: 'bar'
         },
         axis: {
 	        x: {
 	          tick: {
-	            multiline: false,
+	            multiline: false
 	        	},
 	          type: 'category',
-
 	          categories: $scope.poliNombres,
             label: { // ADD
               text: 'Políticos',
@@ -117,7 +106,6 @@ angular.module('poliTweets')
           },
           rotated: true
         }
-
       });
     }
 
@@ -198,5 +186,4 @@ angular.module('poliTweets')
 
       });
     }
-*/
 });
