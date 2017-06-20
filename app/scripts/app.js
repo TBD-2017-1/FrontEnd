@@ -5,7 +5,7 @@
         $routeProvider
         .when('/home', {
         templateUrl: 'views/main.html',
-        controller: 'mainCtrl'
+        //controller: 'mainCtrl'
       })
     .when('/aprobacionPartidos', {
         templateUrl: 'views/aprobacionPartidos.html',
