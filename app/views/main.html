@@ -4,10 +4,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
+                     <br></br> <br></br> 
                         <h1 class="brand-heading title-text-poli">PoliTweets</h1>
                         <p class="intro-text title-text-poli">Estadísticas diarias de políticos en Twitter
-                          <br></br>
-                        <a href="#conglomerados" class="btn btn-circle page-scroll" du-smooth-scroll duration="2000">
+                     <br></br> 
+                        
+                        <a href="#conglomerados" class="btn btn-circle page-scroll" du-smooth-scroll duration="1100">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>
@@ -16,61 +18,81 @@
         </div>
     </header>
 
+    <div ng-init="loadRankingsMain()"></div>
+
     <!-- Conglomerados Section -->
-    <section id="conglomerados" class="content-section-poli text-center">
-        <div class="row">
-          <div class="col-lg-6">
-              <h2>Ranking de Conglomerados</h2>
-              <div id="chartConglo">
-              </div>
+    <section id="conglomerados" class="content-section-poli text-center bgimgCon">
+        <div class="row ">
+          <div class="col-lg-6" >
+            <h2>Ranking de Conglomerados</h2>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+              <div  id="chartConglo"></div>
+            </div>
           </div>
           <div class="col-lg-6 background-poli">
-                  <h2>Detalles</h2>
-                  <p>Graficos que detallan la aprobación y percepción de Conglomerados</p>
-                  <button class="btn-poli btn-lg" ng-click="toDetailsCongl()">Detalles</button>
+            <h2>Detalles</h2>
+            <div class="col-lg-2"></div>
+            <mydiv class="col-lg-8">
+              <p>Graficos que detallan la aprobación y percepción de Conglomerados</p>
+              <button class="btn-poli btn-lg" ng-click="toDetailsCongl()">Detalles</button>
+            </mydiv>
           </div>
         </div>
     </section>
 
     <!-- Partidos Section -->
-    <section id="partidos" class="content-section-poli text-center">
+    <section id="partidos" class="content-section-poli text-center bgimgPar">
         <div class="row">
           <div class="col-lg-6">
-              <h2>Ranking de Partidos</h2>
-              <div id="chartParti">
-              </div>
+            <h2>Ranking de Partidos</h2>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+              <div   id="chartParti"></div>
+            </div>
           </div>
           <div class="col-lg-6">
-                <h2>Detalles</h2>
-                <p>Graficos que detallan la aprobación y percepción de Partidos</p>
-                <button class="btn-poli btn-lg" ng-click="toDetailsPart()">Detalles</button>
+            <h2>Detalles</h2>
+            <div class="col-lg-2"></div>
+            <mydiv class="col-lg-8">
+              <p>Graficos que detallan la aprobación y percepción de Partidos</p>
+              <button class="btn-poli btn-lg" ng-click="toDetailsPart()">Detalles</button>
+            </mydiv>
           </div>
         </div>
     </section>
 
     <!-- Politicos Section -->
-    <section id="politicos" class="content-section-poli text-center">
+    <section id="politicos" class="content-section-poli text-center bgimgPol">
         <div class="row">
           <div class="col-lg-6">
               <h2>Ranking de Politicos</h2>
-              <div id="chartPoli">
-              </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+              <div  id="chartPoli"></div>
+            </div>
           </div>
           <div class="col-lg-6">
-              <h2>Detalles</h2>
-              <p>Graficos que detallan la aprobación y percepción de Partidos</p>
+            <h2>Detalles</h2>
+            <div class="col-lg-2"></div>
+            <mydiv class="col-lg-8">
+              <p>Graficos que detallan la aprobación y percepción de Politicos</p>
               <button class="btn-poli btn-lg" ng-click="toDetailsPolit()">Detalles</button>
+            </mydiv>
           </div>
         </div>
     </section>
 
     <!-- Influencias Section -->
-    <section id="influencias_section" class="content-section-poli text-center">
+    <section id="influencias" class="content-section-poli text-center bgimgInf">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Influencias</h2>
+
                 <p>Redes sociales de usuarios y entidades</p>
-                <a href="../grafo.html" target="_blank" class="btn-poli btn-lg">Ir</a>
+                <a href="../grafo.html"  class="btn-poli btn-lg">Ir</a>
+                               
+
             </div>
         </div>
     </section>
