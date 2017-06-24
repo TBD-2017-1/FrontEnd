@@ -37,7 +37,7 @@ angular.module('poliTweets')
 		$scope.congloValores = ['Aprobación'];
 
 
-		$scope.loadRankingsMain = function() {
+		//$scope.loadRankingsMain = function() {
 			politicosService.getRanking().then(function(data){
 
 				$scope.rankPoliData = data.data.ranking;
@@ -83,7 +83,7 @@ angular.module('poliTweets')
 				console.log(error, "error4");
 			});
 
-		}
+		//}
 
 		// grafico Ranking politicos
 		$scope.showRankingPoli = function() {
