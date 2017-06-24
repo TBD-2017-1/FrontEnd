@@ -1,6 +1,6 @@
 (function(){
 
-    angular.module('poliTweets', ['ngRoute','ngCookies','ngResource','ngMaterial','ngMessages', 'duScroll'])
+    angular.module('poliTweets', ['ngRoute','ngCookies','ngResource','ngMaterial','ngMessages', 'duScroll', 'nemLogging', 'ui-leaflet'])
     .config(function($routeProvider){
         $routeProvider
         .when('/home', {
@@ -93,6 +93,10 @@
     .when('/influencias', {
           templateUrl:'views/influencias.html',
           controller:'politicosCtrl'
+        })
+    .when('/mapa', {
+          templateUrl:'views/mapa.html',
+          controller:'mapaCtrl'
         })
     .otherwise({
         redirectTo: '/home'

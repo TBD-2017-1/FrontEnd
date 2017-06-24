@@ -1,0 +1,26 @@
+mydiv {
+  position: relative;
+  top: 50%;
+  transform: translateY(40%);
+}
+
+.bgimgCon {
+  background-image: url('../img/CongloBN.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.bgimgPol {
+  background-image: url('../img/PoliBN.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.bgimgPar {
+  background-image: url('../img/PartiBN.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.bgimgInf {
+  background-image: url('../img/InfluBN.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}

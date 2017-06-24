@@ -1,6 +1,6 @@
 angular.module('poliTweets')
 		.controller('mainCtrl', function($scope, $location, politicosService, partidosService, conglomeradosService){
-		
+
 		$scope.toHome = function(){
 			$location.url('/home');
 		}
@@ -16,6 +16,10 @@ angular.module('poliTweets')
 		$scope.toInfluences = function(){
 			$location.url('/influencias');
 		}
+		$scope.toMapas = function(){
+			$location.url('/mapa');
+		}
+
 		$scope.rankPoliGraph;
 		$scope.rankPartiGraph;
 		$scope.rankCongloGraph;
@@ -35,16 +39,16 @@ angular.module('poliTweets')
 
 		$scope.loadRankingsMain = function() {
 			politicosService.getRanking().then(function(data){
-						
+
 				$scope.rankPoliData = data.data.ranking;
 				var i = 0;
-				
+
 				for ( i in $scope.rankPoliData ){
 					$scope.poliNombres.push($scope.rankPoliData[i].nombre);
 					$scope.poliValores.push($scope.rankPoliData[i].valor);
 				}
 				$scope.showRankingPoli();
-				
+
 				console.log($scope.rankPoliData);
 
 			}, function(error){
