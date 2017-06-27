@@ -21,18 +21,22 @@ angular.module('poliTweets')
 		}
 
 		$scope.rankPoliGraph;
+		$scope.rankPoliMenosGraph;
 		$scope.rankPartiGraph;
 		$scope.rankCongloGraph;
 
 		$scope.rankPoliData;
+		$scope.rankPoliMenosData;
 		$scope.rankPartiData;
 		$scope.rankCongloData;
 
 		$scope.poliNombres = [];
+		$scope.poliMenosNombres = [];
 		$scope.partiNombres = [];
 		$scope.congloNombres = [];
 
 		$scope.poliValores = ['Aprobación'];
+		$scope.poliMenosValores = ['Aprobación'];
 		$scope.partiValores = ['Aprobación'];
 		$scope.congloValores = ['Aprobación'];
 
@@ -48,6 +52,23 @@ angular.module('poliTweets')
 					$scope.poliValores.push($scope.rankPoliData[i].valor);
 				}
 				$scope.showRankingPoli();
+
+				//console.log($scope.rankPoliData);
+
+			}, function(error){
+				console.log(error, "error4");
+			});
+
+			politicosService.getRankingMenos().then(function(data){
+
+				$scope.rankPoliMenosData = data.data.ranking;
+				var i = 0;
+
+				for ( i in $scope.rankPoliMenosData ){
+					$scope.poliMenosNombres.push($scope.rankPoliMenosData[i].nombre);
+					$scope.poliMenosValores.push($scope.rankPoliMenosData[i].valor);
+				}
+				$scope.showRankingPoliMenos();
 
 				//console.log($scope.rankPoliData);
 
@@ -104,6 +125,45 @@ angular.module('poliTweets')
 	          type: 'category',
 
 	          categories: $scope.poliNombres,
+            label: { // ADD
+              text: 'Políticos',
+              position: 'outer-middle'
+            }
+          },
+          y: {
+          	max: 100,
+          	tick: {
+							values: [ 0, 20, 40, 60, 80, 100],
+	        	},
+            label: { // ADD
+              text: 'Porcentaje',
+              position: 'outer-middle'
+            }
+          },
+          rotated: true
+        }
+
+      });
+    }
+
+		$scope.showRankingPoliMenos = function() {
+      $scope.rankPoliMenosGraph = c3.generate({
+
+      	bindto: '#chartPoliMenos',
+        data: {
+          columns: [
+          $scope.poliMenosValores,
+          ],
+          type: 'bar',
+        },
+        axis: {
+	        x: {
+	          tick: {
+	            multiline: false,
+	        	},
+	          type: 'category',
+
+	          categories: $scope.poliMenosNombres,
             label: { // ADD
               text: 'Políticos',
               position: 'outer-middle'

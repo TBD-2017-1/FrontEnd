@@ -26,14 +26,13 @@
           <div class="col-lg-6" >
             <h2>Ranking de Conglomerados</h2>
             <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <div class="col-lg-10 text-left">
               <div  id="chartConglo"></div>
             </div>
           </div>
           <div class="col-lg-6 background-poli">
             <h2>Detalles</h2>
-            <div class="col-lg-2"></div>
-            <mydiv class="col-lg-8">
+            <mydiv class="col-lg-12">
               <p>Graficos que detallan la aprobación y percepción de Conglomerados</p>
               <button class="btn-poli btn-lg" ng-click="toDetailsCongl()">Detalles</button>
             </mydiv>
@@ -47,14 +46,13 @@
           <div class="col-lg-6">
             <h2>Ranking de Partidos</h2>
             <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-              <div   id="chartParti"></div>
+            <div class="col-lg-10 text-left">
+              <div id="chartParti"></div>
             </div>
           </div>
           <div class="col-lg-6">
             <h2>Detalles</h2>
-            <div class="col-lg-2"></div>
-            <mydiv class="col-lg-8">
+            <mydiv class="col-lg-12">
               <p>Graficos que detallan la aprobación y percepción de Partidos</p>
               <button class="btn-poli btn-lg" ng-click="toDetailsPart()">Detalles</button>
             </mydiv>
@@ -65,17 +63,23 @@
     <!-- Politicos Section -->
     <section id="politicos" class="content-section-poli text-center bgimgPol">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-4">
               <h2>Ranking de Politicos</h2>
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11 text-left">
               <div  id="chartPoli"></div>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-4">
+              <h2>Ranking de Politicos menos queridos</h2>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11 text-left">
+              <div  id="chartPoliMenos"></div>
+            </div>
+          </div>
+          <div class="col-lg-3">
             <h2>Detalles</h2>
-            <div class="col-lg-2"></div>
-            <mydiv class="col-lg-8">
+            <mydiv class="col-lg-12">
               <p>Graficos que detallan la aprobación y percepción de Politicos</p>
               <button class="btn-poli btn-lg" ng-click="toDetailsPolit()">Detalles</button>
             </mydiv>
@@ -95,11 +99,11 @@
     </section>
 
     <!-- Influencias Section -->
-    <section id="mapa" class="content-section-poli text-center bgimgInf">
+    <section id="mapa_section" class="content-section-poli text-center bgimgInf">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Mapas</h2>
-                <p>Redes sociales de usuarios y entidades</p>
+                <p>Aprobación y Percepción por Regiones de Chile</p>
                 <button class="btn-poli btn-lg" ng-click="toMapas()">ver mapas</button>
             </div>
         </div>
