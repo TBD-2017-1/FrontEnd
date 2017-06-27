@@ -437,6 +437,8 @@ angular.module('poliTweets')
 		
 
     $scope.updatePieGraph = function(index){
+	    var apr = $scope.aprob[index - 1]; 
+      document.getElementById('aprob').innerHTML = apr + '% de aprobación';
 
   		$scope.tNeu[1] = $scope.tasa_neu[index - 1];
       $scope.tPos[1] = $scope.tasa_pos[index - 1];
