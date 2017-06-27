@@ -49,7 +49,7 @@ angular.module('poliTweets')
 				}
 				$scope.showRankingPoli();
 
-				console.log($scope.rankPoliData);
+				//console.log($scope.rankPoliData);
 
 			}, function(error){
 				console.log(error, "error4");

@@ -155,7 +155,7 @@ angular.module('poliTweets')
 					j += 1;
 				}
 			}
-
+			//console.log($scope.timeline_data[0]);
 			var first_name = $scope.timeline_data[0].politico.nombre;
 			var last_name = $scope.timeline_data[0].politico.apellido;
 
